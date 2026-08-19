@@ -1,0 +1,78 @@
+// ============================================================================
+// Folha global. Ordem importa: faces -> tokens -> reset -> base.
+// ============================================================================
+
+@use 'typography';
+@use 'tokens';
+@use 'reset';
+@use 'mixins' as m;
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-weight: 400;
+}
+
+// A transição de cor do tema só é habilitada depois que o app monta e marca
+// o <html>. Sem essa guarda, a hidratação faria um cross-fade indesejado no
+// primeiro frame.
+html.theme-ready,
+html.theme-ready body {
+  @include m.motion-safe {
+    transition:
+      background-color var(--dur) var(--ease),
+      color var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
+  }
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-on);
+}
+
+:focus-visible {
+  @include m.focus-ring;
+}
+
+// Some com o outline apenas para quem clica com o mouse; teclado mantém.
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// Link para saltar a navegação — visível somente ao receber foco.
+.skip-link {
+  position: absolute;
+  top: var(--sp-2);
+  left: var(--sp-2);
+  z-index: 100;
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--accent);
+  color: var(--accent-on);
+  border-radius: var(--radius);
+  transform: translateY(-200%);
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
+// ── Reveal no scroll ─────────────────────────────────────────────────────────
+// Duas guardas antes de ocultar qualquer coisa:
+//   .js  — sem JavaScript nada é ocultado, e o HTML prerenderizado fica visível
+//   prefers-reduced-motion: no-preference — quem pediu menos movimento vê tudo
+//     imediatamente, sem animação alguma
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    transition:
+      opacity var(--dur-slow) var(--ease) var(--reveal-delay, 0ms),
+      transform var(--dur-slow) var(--ease) var(--reveal-delay, 0ms);
+  }
+
+  .js [data-reveal]:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}

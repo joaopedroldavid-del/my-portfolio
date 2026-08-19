@@ -1,0 +1,22 @@
+<section class="sk" id="skills">
+  <div class="sk__grid">
+    <h2 class="sk__heading" appReveal>{{ t().skills.heading }}</h2>
+
+    <div class="sk__body">
+      <p class="sk__lead" appReveal [appRevealDelay]="80">{{ t().skills.lead }}</p>
+
+      <dl class="sk__groups">
+        @for (group of groups; track group.id) {
+          <div class="sk__group" appReveal [appRevealDelay]="$index * 70">
+            <dt class="sk__label">{{ group.label[locale()] }}</dt>
+            <dd class="sk__items">
+              @for (item of group.items; track item) {
+                <span class="sk__item">{{ item }}</span>
+              }
+            </dd>
+          </div>
+        }
+      </dl>
+    </div>
+  </div>
+</section>

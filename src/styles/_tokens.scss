@@ -1,0 +1,106 @@
+
+// ============================================================================
+// Tokens de design
+//
+// Direção estética: editorial / arquivo. Papel e tinta, não tela e neon.
+// Fundo em papel quente, tinta quase-preta quente, um único accent em terracota.
+// Contrastes conferidos contra WCAG AA — ver a tabela em cada bloco.
+// ============================================================================
+
+// ── Cores por tema ───────────────────────────────────────────────────────────
+// Emitidas como custom properties para que a troca de tema seja só um atributo
+// no <html> — nenhum recálculo de Sass, nenhum rebuild.
+
+@mixin palette-light {
+  --bg: #fbfaf8;         // papel quente
+  --surface: #f3f1ec;    // superfície elevada (cards, tags)
+  --ink: #1a1815;        // texto primário    — 16.98:1 sobre bg
+  --muted: #6b655c;      // texto secundário  —  5.53:1 sobre bg
+  --border: #e3dfd6;     // divisórias
+  --accent: #a63d18;     // terracota         —  6.10:1 sobre bg
+  --accent-on: #ffffff;  // texto sobre accent preenchido — 6.36:1
+  --accent-weak: #a63d181a;
+  --shadow: 0 1px 2px #1a181508, 0 8px 24px #1a18150a;
+}
+
+@mixin palette-dark {
+  --bg: #0f0e0c;         // carvão quente, não preto puro
+  --surface: #191712;
+  --ink: #f2efe8;        // 16.80:1 sobre bg
+  --muted: #9a938a;      //  6.35:1 sobre bg
+  --border: #2a2722;
+  --accent: #e0763f;     // terracota clareada —  6.28:1 sobre bg
+  --accent-on: #0f0e0c;  // NO DARK o texto sobre o accent é escuro:
+                         // branco sobre accent daria só 3.07:1 e falharia AA.
+  --accent-weak: #e0763f1f;
+  --shadow: 0 1px 2px #00000040, 0 8px 24px #00000059;
+}
+
+:root {
+  @include palette-light;
+
+  // ── Tipografia ────────────────────────────────────────────────────────────
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-body: 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  // Escala fluida: cresce com a viewport sem media query, e trava nos extremos.
+  --text-display: clamp(2.75rem, 1.2rem + 7vw, 6.5rem);
+  --text-h2: clamp(2rem, 1.2rem + 3vw, 3.25rem);
+  --text-h3: clamp(1.25rem, 1rem + 1vw, 1.6rem);
+  --text-lead: clamp(1.125rem, 1rem + 0.6vw, 1.4rem);
+  --text-body: 1.0625rem; // 17px
+  --text-sm: 0.9375rem;
+  --text-label: 0.75rem;
+
+  --leading-tight: 1.04;   // títulos grandes em serifada pedem entrelinha curta
+  --leading-snug: 1.3;
+  --leading-body: 1.65;
+
+  // Tracking negativo nos títulos é o detalhe que mais aproxima do visual Apple.
+  --tracking-display: -0.028em;
+  --tracking-h2: -0.02em;
+  --tracking-label: 0.09em;
+
+  // ── Espaçamento (base 8) ──────────────────────────────────────────────────
+  --sp-1: 0.25rem;  --sp-2: 0.5rem;   --sp-3: 0.75rem;  --sp-4: 1rem;
+  --sp-6: 1.5rem;   --sp-8: 2rem;     --sp-12: 3rem;    --sp-16: 4rem;
+  --sp-20: 5rem;    --sp-24: 6rem;
+
+  // Respiro vertical generoso entre seções — o cerne da sensação minimalista.
+  --section-y: clamp(5rem, 11vw, 10rem);
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --measure: 64ch;      // largura máxima de leitura confortável
+  --max-w: 68rem;       // largura máxima do conteúdo
+
+  // ── Forma ─────────────────────────────────────────────────────────────────
+  --radius-sm: 2px;
+  --radius: 6px;
+  --radius-pill: 999px;
+
+  // ── Movimento ─────────────────────────────────────────────────────────────
+  // Expo-out: sai rápido e desacelera longo. É a curva que dá a sensação
+  // "caro" das transições da Apple.
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 180ms;
+  --dur: 320ms;
+  --dur-slow: 620ms;
+
+  color-scheme: light;
+}
+
+// Escolha explícita do usuário vence tudo.
+:root[data-theme='dark'] {
+  @include palette-dark;
+  color-scheme: dark;
+}
+
+// Sem escolha salva, seguimos o sistema. O `:not([data-theme])` é o que faz
+// este bloco perder para a escolha explícita acima — e é também o fallback
+// para quem está com JavaScript desligado.
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include palette-dark;
+    color-scheme: dark;
+  }
+}

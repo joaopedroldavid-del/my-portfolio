@@ -1,0 +1,75 @@
+@use 'mixins' as m;
+
+.sk {
+  @include m.container;
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--border);
+}
+
+.sk__grid {
+  display: grid;
+  gap: var(--sp-6);
+  align-items: start;
+
+  @include m.bp(lg) {
+    grid-template-columns: 12rem 1fr;
+    gap: var(--sp-16);
+  }
+}
+
+.sk__heading {
+  @include m.label;
+  color: var(--muted);
+  padding-top: 0.4rem;
+}
+
+.sk__lead {
+  color: var(--muted);
+  max-width: var(--measure);
+}
+
+.sk__groups {
+  margin-top: var(--sp-12);
+  display: grid;
+  gap: var(--sp-8);
+}
+
+.sk__group {
+  display: grid;
+  gap: var(--sp-3);
+
+  // Rótulo do grupo à esquerda em telas largas, empilhado abaixo disso.
+  @include m.bp(md) {
+    grid-template-columns: 9rem 1fr;
+    gap: var(--sp-6);
+    align-items: baseline;
+  }
+}
+
+.sk__label {
+  @include m.label;
+  color: var(--accent);
+}
+
+.sk__items {
+  display: flex;
+  flex-wrap: wrap;
+  // O gap horizontal maior é o que separa os itens visualmente — sem pílulas
+  // nem bordas, que adicionariam ruído a uma seção que é essencialmente uma
+  // lista de nomes.
+  gap: var(--sp-2) var(--sp-4);
+}
+
+.sk__item {
+  font-size: var(--text-sm);
+  position: relative;
+
+  // Separador tipográfico entre itens, em vez de borda ao redor de cada um.
+  + .sk__item::before {
+    content: '·';
+    color: var(--border);
+    position: absolute;
+    left: calc(var(--sp-4) / -2);
+    transform: translateX(-50%);
+  }
+}

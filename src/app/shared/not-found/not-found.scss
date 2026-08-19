@@ -1,0 +1,41 @@
+@use 'mixins' as m;
+
+.nf {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: start;
+  gap: var(--sp-4);
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding: var(--gutter);
+}
+
+.nf__code {
+  @include m.label;
+  color: var(--accent);
+}
+
+.nf__title {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  letter-spacing: var(--tracking-h2);
+  line-height: var(--leading-tight);
+}
+
+.nf__lead {
+  color: var(--muted);
+  max-width: var(--measure);
+}
+
+.nf__back {
+  @include m.label;
+  margin-top: var(--sp-4);
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-fast) var(--ease);
+
+  &:hover {
+    border-color: currentColor;
+  }
+}

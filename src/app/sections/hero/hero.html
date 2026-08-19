@@ -1,0 +1,39 @@
+<section class="hero">
+  <div class="hero__grid">
+    <div class="hero__text">
+      <p class="hero__eyebrow">
+        <span>{{ t().hero.role }}</span>
+        <span class="hero__dot" aria-hidden="true">·</span>
+        <span>{{ t().hero.location }}</span>
+      </p>
+
+      <!-- white-space: pre-line no CSS respeita o \n do dicionário, que é onde
+           a quebra da tagline é decidida — por idioma, não no markup. -->
+      <h1 class="hero__headline">{{ t().hero.headline }}</h1>
+
+      <p class="hero__lead">{{ t().hero.lead }}</p>
+
+      <div class="hero__actions">
+        <a class="btn btn--solid" [routerLink]="'/' + locale()" fragment="experience">
+          {{ t().hero.ctaExperience }}
+        </a>
+        <a class="btn btn--quiet" [href]="resumeHref()" download>
+          {{ t().hero.ctaResume }}
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__portrait">
+      <!-- Trocar o arquivo em public/img/ não exige mudança de código.
+           width/height explícitos reservam o espaço e evitam salto de layout. -->
+      <img
+        src="/img/portrait.svg"
+        [alt]="t().about.photoAlt"
+        width="600"
+        height="800"
+        fetchpriority="high"
+        decoding="sync"
+      />
+    </div>
+  </div>
+</section>

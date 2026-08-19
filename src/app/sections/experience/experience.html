@@ -1,0 +1,71 @@
+<section class="xp" id="experience">
+  <div class="xp__grid">
+    <h2 class="xp__heading" appReveal>{{ t().experience.heading }}</h2>
+
+    <div class="xp__body">
+      @for (org of main; track org.name) {
+        <article class="xp__org">
+          <header class="xp__org-head" appReveal>
+            <h3 class="xp__company">{{ org.name }}</h3>
+            <p class="xp__org-range">{{ orgRange(org) }}</p>
+          </header>
+
+          <!-- Cargos aninhados na empresa: é a progressão que a página vende,
+               então ela precisa ser lida como uma sequência, não como itens
+               soltos. -->
+          <ol class="xp__roles">
+            @for (role of org.roles; track role.start) {
+              <li class="xp__role" appReveal [appRevealDelay]="$index * 90">
+                <div class="xp__role-head">
+                  <h4 class="xp__title">
+                    {{ role.title[locale()] }}
+                    @if (isCurrent(role)) {
+                      <span class="xp__now">{{ t().experience.current }}</span>
+                    }
+                  </h4>
+                  <p class="xp__range">{{ range(role) }}</p>
+                </div>
+
+                <ul class="xp__bullets">
+                  @for (bullet of role.bullets[locale()]; track $index) {
+                    <li>{{ bullet }}</li>
+                  }
+                </ul>
+
+                <ul class="xp__tech">
+                  @for (tech of role.tech; track tech) {
+                    <li>{{ tech }}</li>
+                  }
+                </ul>
+              </li>
+            }
+          </ol>
+        </article>
+      }
+
+      <h3 class="xp__other" appReveal>{{ t().experience.otherWork }}</h3>
+
+      @for (org of side; track org.name) {
+        <article class="xp__side" appReveal [appRevealDelay]="$index * 90">
+          @for (role of org.roles; track role.start) {
+            <div class="xp__side-head">
+              <h4 class="xp__title">{{ role.title[locale()] }}</h4>
+              <p class="xp__side-org">{{ org.name }}</p>
+              <p class="xp__range">{{ range(role) }}</p>
+            </div>
+            <ul class="xp__bullets">
+              @for (bullet of role.bullets[locale()]; track $index) {
+                <li>{{ bullet }}</li>
+              }
+            </ul>
+            <ul class="xp__tech">
+              @for (tech of role.tech; track tech) {
+                <li>{{ tech }}</li>
+              }
+            </ul>
+          }
+        </article>
+      }
+    </div>
+  </div>
+</section>

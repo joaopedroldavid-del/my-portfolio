@@ -1,0 +1,79 @@
+// ============================================================================
+// Reset enxuto — só o que este projeto precisa.
+// ============================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  // O scroll suave por âncora fica aqui, mas só para quem aceita movimento.
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+  // Compensa o header fixo ao pular para uma seção via #ancora.
+  scroll-padding-top: 5rem;
+}
+
+body {
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+// Títulos herdam peso do contexto — cada componente decide.
+h1, h2, h3, h4 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+// Alvo de toque mínimo em telas por toque.
+@media (pointer: coarse) {
+  a,
+  button {
+    min-height: 44px;
+  }
+}

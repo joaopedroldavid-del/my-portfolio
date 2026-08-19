@@ -1,0 +1,29 @@
+@use 'mixins' as m;
+
+.ft {
+  border-top: 1px solid var(--border);
+  padding-block: var(--sp-8);
+}
+
+.ft__inner {
+  @include m.container;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+
+.ft__built,
+.ft__src {
+  @include m.label;
+  color: var(--muted);
+}
+
+.ft__src {
+  transition: color var(--dur-fast) var(--ease);
+
+  &:hover {
+    color: var(--accent);
+  }
+}

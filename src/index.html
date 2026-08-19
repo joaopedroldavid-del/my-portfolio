@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>João Pedro Lourenço David — Desenvolvedor de Software</title>
+  <meta name="description"
+        content="Desenvolvedor de software focado em Java, Spring Boot, Go e Angular. Da operação logística à engenharia de software.">
+  <meta name="author" content="João Pedro Lourenço David">
+
+  <!-- Informa ao browser que a página tem os dois temas, para que scrollbar e
+       controles nativos já nasçam na cor certa. -->
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Guard anti-flash de tema.
+       Roda de forma síncrona antes de qualquer stylesheet, então o atributo já
+       está no <html> quando a primeira pintura acontece. O Angular sobe muito
+       depois — aplicar tema num effect() pisca, garantido.
+
+       Só escrevemos data-theme quando existe escolha EXPLÍCITA do usuário.
+       Na ausência dela, deixamos o CSS resolver via @media (prefers-color-scheme),
+       que acompanha mudanças do sistema sozinho e funciona sem JavaScript. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+
+      // Marca que o JavaScript está ativo. O CSS só oculta os elementos de
+      // reveal sob 'html.js', então sem JS a página prerenderizada permanece
+      // inteiramente visível — e como esta linha roda antes da primeira
+      // pintura, com JS não há flash de conteúdo aparecendo e sumindo.
+      root.classList.add('js');
+
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') {
+          root.dataset.theme = t;
+        }
+      } catch (e) {
+        /* localStorage bloqueado (modo privado, cookies off): cai no @media. */
+      }
+    })();
+  </script>
+
+  <!-- Só as duas fontes acima da dobra. A mono das tags carrega normalmente. -->
+  <link rel="preload" href="/fonts/schibsted-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>

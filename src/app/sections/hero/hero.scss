@@ -1,0 +1,155 @@
+@use 'mixins' as m;
+
+.hero {
+  @include m.container;
+  // Compensa o header fixo e ainda dá o respiro alto da seção.
+  padding-block: calc(3.5rem + var(--sp-16)) var(--section-y);
+
+  @include m.bp(md) {
+    padding-block: calc(4rem + var(--sp-20)) var(--section-y);
+  }
+}
+
+.hero__grid {
+  display: grid;
+  gap: var(--sp-12);
+  align-items: center;
+
+  // Assimetria deliberada: o texto domina, o retrato acompanha.
+  @include m.bp(lg) {
+    grid-template-columns: 1.45fr 1fr;
+    gap: var(--sp-16);
+  }
+}
+
+.hero__eyebrow {
+  @include m.label;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.hero__dot {
+  color: var(--border);
+}
+
+.hero__headline {
+  margin-top: var(--sp-6);
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  // O tracking negativo em serifada grande é o detalhe que segura o visual.
+  letter-spacing: var(--tracking-display);
+  // Respeita o \n definido no dicionário.
+  white-space: pre-line;
+  // Serifada de alto contraste pede um leve balanço óptico à esquerda.
+  margin-left: -0.03em;
+}
+
+.hero__lead {
+  margin-top: var(--sp-6);
+  max-width: 46ch;
+  font-size: var(--text-lead);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.hero__actions {
+  margin-top: var(--sp-8);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3) var(--sp-6);
+  align-items: center;
+}
+
+.hero__portrait {
+  // No mobile o retrato vem depois do texto e não domina a dobra.
+  order: 2;
+  max-width: 20rem;
+
+  @include m.bp(lg) {
+    max-width: none;
+    justify-self: end;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    // Proporção de retrato garantida mesmo se o arquivo trocar de dimensão.
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+}
+
+// ── Botões ───────────────────────────────────────────────────────────────────
+// Ficam aqui porque o Hero é o único lugar com par de CTAs; o Contato usa
+// links de texto.
+
+.btn {
+  @include m.label;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.btn--solid {
+  padding: var(--sp-3) var(--sp-6);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  // NÃO usar branco fixo: no tema escuro o texto sobre o accent precisa ser
+  // escuro para passar contraste AA. O token resolve isso por tema.
+  color: var(--accent-on);
+
+  &:hover {
+    background: color-mix(in srgb, var(--accent) 86%, var(--ink));
+  }
+}
+
+.btn--quiet {
+  color: var(--ink);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--sp-1);
+
+  &:hover {
+    border-bottom-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+// ── Entrada escalonada ───────────────────────────────────────────────────────
+// Um único momento coreografado no carregamento rende mais que microinterações
+// espalhadas. Só para quem aceita movimento.
+@media (prefers-reduced-motion: no-preference) {
+  .hero__eyebrow,
+  .hero__headline,
+  .hero__lead,
+  .hero__actions,
+  .hero__portrait {
+    animation: hero-rise var(--dur-slow) var(--ease) both;
+  }
+
+  .hero__eyebrow   { animation-delay: 0ms; }
+  .hero__headline  { animation-delay: 80ms; }
+  .hero__lead      { animation-delay: 180ms; }
+  .hero__actions   { animation-delay: 260ms; }
+  .hero__portrait  { animation-delay: 340ms; }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

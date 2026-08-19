@@ -1,0 +1,40 @@
+// ============================================================================
+// Faces tipográficas — auto-hospedadas em /fonts, sem CDN externo.
+//
+// Pareamento: serifada editorial (Instrument Serif) para títulos, grotesca
+// (Schibsted Grotesk) para corpo. A Schibsted vem de um jornal norueguês, foi
+// desenhada para conviver com serifadas — daí o pareamento funcionar.
+// ============================================================================
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap; // texto aparece na fallback e troca — nunca invisível
+  src: url('/fonts/instrument-serif-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/instrument-serif-400-italic.woff2') format('woff2');
+}
+
+// Variáveis: um arquivo cobre toda a faixa de peso.
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('/fonts/schibsted-grotesk-var.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-var.woff2') format('woff2-variations');
+}

@@ -1,0 +1,36 @@
+<section class="ab" id="about">
+  <div class="ab__grid">
+    <h2 class="ab__heading" appReveal>{{ t().about.heading }}</h2>
+
+    <div class="ab__body" appReveal [appRevealDelay]="80">
+      @for (paragraph of t().about.paragraphs; track $index) {
+        <p class="ab__p">{{ paragraph }}</p>
+      }
+
+      <dl class="ab__meta">
+        <div class="ab__item">
+          <dt>{{ t().education.heading }}</dt>
+          @for (item of education; track item.institution) {
+            <dd>
+              <span class="ab__degree">{{ item.degree[locale()] }}</span>
+              <span class="ab__where">{{ item.institution }}</span>
+              <span class="ab__when">
+                {{ period(item.start, item.end) }}
+                @if (item.expected) {
+                  <span class="ab__expected">({{ t().education.expected }})</span>
+                }
+              </span>
+            </dd>
+          }
+        </div>
+
+        <div class="ab__item">
+          <dt>{{ t().languages.heading }}</dt>
+          @for (language of languages; track $index) {
+            <dd>{{ language[locale()] }}</dd>
+          }
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>

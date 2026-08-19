@@ -1,0 +1,95 @@
+@use 'mixins' as m;
+
+.ct {
+  @include m.container;
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--border);
+}
+
+.ct__grid {
+  display: grid;
+  gap: var(--sp-6);
+  align-items: start;
+
+  @include m.bp(lg) {
+    grid-template-columns: 12rem 1fr;
+    gap: var(--sp-16);
+  }
+}
+
+.ct__heading {
+  @include m.label;
+  color: var(--muted);
+  padding-top: 0.4rem;
+}
+
+.ct__lead {
+  color: var(--muted);
+  max-width: var(--measure);
+}
+
+.ct__email {
+  display: inline-block;
+  margin-top: var(--sp-6);
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  letter-spacing: var(--tracking-h2);
+  line-height: 1.1;
+  // Sublinhado deslocado: mais elegante que o padrão colado na base.
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.12em;
+  text-decoration-color: var(--border);
+  transition:
+    color var(--dur-fast) var(--ease),
+    text-decoration-color var(--dur-fast) var(--ease);
+  // Quebra o e-mail em telas estreitas em vez de estourar a largura.
+  overflow-wrap: anywhere;
+
+  &:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+}
+
+.ct__links {
+  margin-top: var(--sp-12);
+  display: grid;
+  max-width: 26rem;
+
+  li + li {
+    border-top: 1px solid var(--border);
+  }
+
+  a {
+    @include m.label;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--sp-4);
+    color: var(--ink);
+    transition: color var(--dur-fast) var(--ease);
+
+    &:hover {
+      color: var(--accent);
+
+      .ct__arrow {
+        transform: translate(2px, -2px);
+      }
+    }
+  }
+}
+
+.ct__arrow {
+  color: var(--muted);
+  transition: transform var(--dur) var(--ease);
+}
+
+// Feedback visual ao copiar para clipboard: cor muda para accent, ícone muda.
+.ct__links a.copied {
+  color: var(--accent);
+
+  .ct__arrow {
+    color: var(--accent);
+  }
+}

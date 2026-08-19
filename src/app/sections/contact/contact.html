@@ -1,0 +1,43 @@
+<section class="ct" id="contact">
+  <div class="ct__grid">
+    <h2 class="ct__heading" appReveal>{{ t().contact.heading }}</h2>
+
+    <div class="ct__body" appReveal [appRevealDelay]="80">
+      <p class="ct__lead">{{ t().contact.lead }}</p>
+
+      <ul class="ct__links">
+        <li>
+          <a href="#"
+             (click)="$event.preventDefault(); copyToClipboard(contact.email)"
+             [title]="'Copiar: ' + contact.email"
+             [class.copied]="justCopied()"
+             role="button"
+             [attr.aria-label]="justCopied() ? t().contact.emailLabel + ' (copiado!)' : 'Copiar: ' + contact.email">
+            <span class="ct__link-label" aria-live="polite" aria-atomic="true">
+              {{ justCopied() ? 'Copiado!' : t().contact.emailLabel }}
+            </span>
+            <span class="ct__arrow" aria-hidden="true">{{ justCopied() ? '✓' : '↗' }}</span>
+          </a>
+        </li>
+        <li>
+          <a [href]="contact.linkedin" target="_blank" rel="noopener noreferrer">
+            <span class="ct__link-label">{{ t().contact.linkedinLabel }}</span>
+            <span class="ct__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a [href]="contact.github" target="_blank" rel="noopener noreferrer">
+            <span class="ct__link-label">{{ t().contact.githubLabel }}</span>
+            <span class="ct__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a [href]="resumeHref()" download>
+            <span class="ct__link-label">{{ t().contact.resumeLabel }}</span>
+            <span class="ct__arrow" aria-hidden="true">↓</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,88 @@
+@use 'mixins' as m;
+
+.ab {
+  @include m.container;
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--border);
+}
+
+// Rótulo da seção à esquerda, conteúdo à direita — estrutura editorial que se
+// repete em todas as seções e é o que dá ritmo à página.
+.ab__grid {
+  display: grid;
+  gap: var(--sp-6);
+  // Sem isto o rótulo da seção estica por toda a altura da linha do grid.
+  align-items: start;
+
+  @include m.bp(lg) {
+    grid-template-columns: 12rem 1fr;
+    gap: var(--sp-16);
+  }
+}
+
+.ab__heading {
+  @include m.label;
+  color: var(--muted);
+  // Alinha com a primeira linha do corpo em telas grandes.
+  padding-top: 0.4rem;
+}
+
+.ab__body {
+  max-width: var(--measure);
+}
+
+.ab__p {
+  font-size: var(--text-lead);
+  line-height: 1.6;
+
+  + .ab__p {
+    margin-top: var(--sp-6);
+  }
+}
+
+.ab__meta {
+  margin-top: var(--sp-12);
+  display: grid;
+  gap: var(--sp-8);
+
+  @include m.bp(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ab__item dt {
+  @include m.label;
+  color: var(--muted);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--sp-3);
+}
+
+.ab__item dd {
+  font-size: var(--text-sm);
+
+  + dd {
+    margin-top: var(--sp-2);
+  }
+}
+
+.ab__degree,
+.ab__where,
+.ab__when {
+  display: block;
+}
+
+.ab__where,
+.ab__when {
+  color: var(--muted);
+}
+
+.ab__when {
+  @include m.label;
+  margin-top: var(--sp-1);
+}
+
+.ab__expected {
+  text-transform: none;
+  letter-spacing: 0;
+}

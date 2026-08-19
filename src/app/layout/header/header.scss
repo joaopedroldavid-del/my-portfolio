@@ -1,0 +1,149 @@
+@use 'mixins' as m;
+
+.hd {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  // Translucidez com blur: o conteúdo passa por baixo sem sumir.
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur) var(--ease);
+}
+
+// A borda só aparece depois que a página sai do topo — no topo, o header
+// precisa se dissolver no fundo.
+.hd--scrolled {
+  border-bottom-color: var(--border);
+}
+
+.hd__inner {
+  @include m.container;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-6);
+  height: 3.5rem;
+
+  @include m.bp(md) {
+    height: 4rem;
+  }
+}
+
+.hd__mark {
+  @include m.label;
+  font-weight: 700;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+.hd__nav {
+  display: none; // Em telas pequenas a página é curta: rolar é mais rápido
+                 // que abrir um menu. Nada de hambúrguer para 4 âncoras.
+  gap: var(--sp-6);
+
+  @include m.bp(lg) {
+    display: flex;
+  }
+}
+
+.hd__link {
+  @include m.label;
+  color: var(--muted);
+  position: relative;
+  transition: color var(--dur-fast) var(--ease);
+
+  // Sublinhado que cresce do centro — o detalhe de micro-interação.
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -0.35rem;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transform: translateX(-50%);
+    transition: width var(--dur) var(--ease);
+  }
+
+  &:hover {
+    color: var(--ink);
+
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+.hd__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  flex-shrink: 0;
+}
+
+.hd__langs {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+
+  // Separador tipográfico entre PT e EN.
+  > * + *::before {
+    content: '/';
+    color: var(--border);
+    margin-right: var(--sp-2);
+  }
+}
+
+.hd__lang {
+  @include m.label;
+  color: var(--muted);
+  transition: color var(--dur-fast) var(--ease);
+
+  &:hover {
+    color: var(--ink);
+  }
+}
+
+.hd__lang--on {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.hd__theme {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--muted);
+  transition: color var(--dur-fast) var(--ease);
+
+  &:hover {
+    color: var(--ink);
+  }
+
+  svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    // Ícones desenhados em traço, exceto a metade preenchida do 'system'.
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+  }
+
+  .hd__fill {
+    fill: currentColor;
+    stroke: none;
+  }
+}
+
+// O rótulo de texto do tema só cabe a partir do desktop; abaixo disso o ícone
+// e o aria-label carregam a informação.
+.hd__theme-text {
+  @include m.label;
+  display: none;
+
+  @include m.bp(xl) {
+    display: inline;
+  }
+}

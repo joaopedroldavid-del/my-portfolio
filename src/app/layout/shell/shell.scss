@@ -1,0 +1,16 @@
+@use 'mixins' as m;
+
+.shell__stub {
+  @include m.container;
+  // Compensa o header fixo.
+  padding-block: calc(4rem + var(--section-y)) var(--section-y);
+  display: grid;
+  gap: var(--sp-4);
+  min-height: 70vh;
+  align-content: center;
+}
+
+.shell__hint {
+  color: var(--muted);
+  max-width: var(--measure);
+}

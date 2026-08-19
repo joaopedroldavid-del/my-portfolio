@@ -1,0 +1,203 @@
+@use 'mixins' as m;
+
+.xp {
+  @include m.container;
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--border);
+}
+
+.xp__grid {
+  display: grid;
+  gap: var(--sp-6);
+  align-items: start;
+
+  @include m.bp(lg) {
+    grid-template-columns: 12rem 1fr;
+    gap: var(--sp-16);
+  }
+}
+
+.xp__heading {
+  @include m.label;
+  color: var(--muted);
+  padding-top: 0.4rem;
+}
+
+.xp__body {
+  max-width: 46rem;
+}
+
+// ── Empresa ──────────────────────────────────────────────────────────────────
+
+.xp__org-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-2) var(--sp-4);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.xp__company {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  letter-spacing: -0.01em;
+}
+
+.xp__org-range,
+.xp__range {
+  @include m.label;
+  color: var(--muted);
+}
+
+// ── Cargos: a linha vertical que amarra a progressão ─────────────────────────
+
+.xp__roles {
+  position: relative;
+  margin-top: var(--sp-8);
+  padding-left: var(--sp-6);
+
+  // O fio da timeline. Só existe a partir de dois cargos, mas manter sempre
+  // simplifica e não incomoda com um.
+  &::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 0.55rem;
+    bottom: 0.55rem;
+    width: 1px;
+    background: var(--border);
+  }
+}
+
+.xp__role {
+  position: relative;
+
+  // O marcador de cada cargo, sobre o fio.
+  &::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--sp-6) * -1);
+    top: 0.5rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--muted);
+  }
+
+  // O cargo atual recebe o accent — é a única cor da seção, e marca onde a
+  // progressão chegou.
+  &:first-child::before {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  + .xp__role {
+    margin-top: var(--sp-12);
+  }
+}
+
+.xp__role-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-1) var(--sp-4);
+}
+
+.xp__title {
+  font-size: var(--text-body);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.xp__now {
+  @include m.label;
+  font-weight: 500;
+  color: var(--accent);
+  border: 1px solid var(--accent-weak);
+  background: var(--accent-weak);
+  padding: 0.15rem var(--sp-2);
+  border-radius: var(--radius-pill);
+}
+
+.xp__bullets {
+  margin-top: var(--sp-3);
+  display: grid;
+  gap: var(--sp-2);
+
+  li {
+    color: var(--muted);
+    font-size: var(--text-sm);
+    line-height: 1.55;
+    padding-left: var(--sp-4);
+    position: relative;
+
+    // Marcador discreto — um traço, não um bullet redondo.
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 6px;
+      height: 1px;
+      background: var(--border);
+    }
+  }
+}
+
+.xp__tech {
+  margin-top: var(--sp-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+
+  li {
+    @include m.label;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.2rem var(--sp-2);
+  }
+}
+
+// ── Outros trabalhos ─────────────────────────────────────────────────────────
+
+.xp__other {
+  @include m.label;
+  color: var(--muted);
+  margin-top: var(--sp-20);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.xp__side {
+  margin-top: var(--sp-8);
+}
+
+.xp__side-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-2) var(--sp-3);
+}
+
+.xp__side-org {
+  color: var(--muted);
+  font-size: var(--text-sm);
+
+  &::before {
+    content: '·';
+    margin-right: var(--sp-3);
+    color: var(--border);
+  }
+}
+
+// Empurra o intervalo para a direita na mesma linha.
+.xp__side-head .xp__range {
+  margin-left: auto;
+}
