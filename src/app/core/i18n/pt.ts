@@ -44,7 +44,7 @@ export const PT = {
     role: 'Desenvolvedor de Software',
     headline: 'Da operação\nao código.',
     lead:
-      'Entrei na Cassol pela logística, virei analista de dados e hoje desenvolvo ' +
+      'Entrei na no mercado de trabalho pela logística, virei analista de dados e hoje desenvolvo ' +
       'os sistemas que movem a operação.',
     location: 'São Paulo, SP',
     ctaExperience: 'Ver trajetória',
@@ -54,7 +54,7 @@ export const PT = {
   about: {
     heading: 'Sobre',
     paragraphs: [
-      'Não migrei para tecnologia de fora para dentro. Entrei na Cassol como ' +
+      'Não migrei para tecnologia de fora para dentro. Entrei no mercado de trabalho como ' +
         'estagiário de transportes, aprendi a operação pelo lado de quem a executa, ' +
         'e fui me aproximando do código à medida que percebia o quanto dela podia ' +
         'ser automatizada.',
@@ -102,7 +102,7 @@ export const PT = {
   },
 
   footer: {
-    builtWith: 'Feito em Angular, sem dependências de UI.',
+    builtWith: 'Feito em Angular',
     viewSource: 'Ver o código',
   },
 

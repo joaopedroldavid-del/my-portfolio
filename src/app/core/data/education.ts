@@ -30,6 +30,6 @@ export const EDUCATION: readonly Education[] = [
 
 export const LANGUAGES: readonly Translated[] = [
   { pt: 'Português — C2', en: 'Portuguese — C2' },
-  { pt: 'Espanhol — A1', en: 'Spanish — A1' },
   { pt: 'Inglês — B1', en: 'English — B1' },
+  { pt: 'Espanhol — A1', en: 'Spanish — A1' },
 ];

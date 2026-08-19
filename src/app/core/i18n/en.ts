@@ -42,7 +42,7 @@ export const EN: Dict = {
     role: 'Software Developer',
     headline: 'From operations\nto code.',
     lead:
-      'I joined Cassol through logistics, became a data analyst, and now build the ' +
+      'I started my career in logistics, transitioned into data analysis, and now build the ' +
       'systems that move the operation.',
     location: 'São Paulo, Brazil',
     ctaExperience: 'See experience',
@@ -52,7 +52,7 @@ export const EN: Dict = {
   about: {
     heading: 'About',
     paragraphs: [
-      'I did not move into tech from the outside. I joined Cassol as a transport ' +
+      'I did not move into tech from the outside. I started my career as a transport ' +
         'intern, learned the operation from the people running it, and drifted ' +
         'toward code as I realised how much of it could be automated.',
       'As a data analyst I spent two years building logistics cost indicators and ' +
