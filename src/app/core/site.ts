@@ -12,9 +12,9 @@
  * Se depois você apontar um domínio próprio, muda só aqui.
  * ─────────────────────────────────────────────────────────────────────────────
  */
-export const SITE_URL = 'https://joao-pedro-david.vercel.app';
+export const SITE_URL = 'https://portfolio-joao-pedro-david.vercel.app';
 
-export const SITE_NAME = 'João Pedro Lourenço David';
+export const SITE_NAME = 'Portfolio: JoaoPedroLDavid';
 
 /** Tag BCP 47 usada em og:locale (formato com underscore, não hífen). */
 export const OG_LOCALE: Record<'pt' | 'en', string> = {
