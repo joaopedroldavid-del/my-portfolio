@@ -27,7 +27,7 @@
       <!-- Trocar o arquivo em public/img/ não exige mudança de código.
            width/height explícitos reservam o espaço e evitam salto de layout. -->
       <img
-        src="/img/portrait.svg"
+        [src]="portraitSrc()"
         [alt]="t().about.photoAlt"
         width="600"
         height="800"
