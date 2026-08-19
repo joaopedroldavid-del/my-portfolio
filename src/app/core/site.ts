@@ -2,7 +2,6 @@
  * URL pública do site.
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * TODO(joão): trocar pela URL real após o primeiro deploy na Vercel.
  *
  * Precisa ser absoluta e sem barra ao final. É usada em canonical, hreflang e
  * nas tags Open Graph — e OG exige URL absoluta: caminho relativo faz o
