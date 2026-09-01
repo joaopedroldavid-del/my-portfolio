@@ -32,10 +32,15 @@ let env = {};
 try {
   env = parseEnv(readFileSync(envPath, 'utf8'));
 } catch {
-  console.warn(`[generate-environment] Nenhum .env encontrado em ${envPath} — usando valores vazios.`);
+  // Normal na Vercel: não existe .env no build, a variável já vem em
+  // process.env (é assim que a Vercel injeta o que foi cadastrado no
+  // dashboard). Só é problema se process.env também não tiver o valor —
+  // e isso o aviso abaixo cobre.
 }
 
-const weatherApiBaseUrl = env.WEATHER_API_BASE_URL ?? '';
+// process.env vence o .env: é o que a Vercel injeta a partir do dashboard,
+// e localmente também funciona se a variável estiver exportada no shell.
+const weatherApiBaseUrl = process.env.WEATHER_API_BASE_URL ?? env.WEATHER_API_BASE_URL ?? '';
 if (!weatherApiBaseUrl) {
   console.warn(
     '[generate-environment] WEATHER_API_BASE_URL não definido. Copie .env.example para .env e ajuste.',
