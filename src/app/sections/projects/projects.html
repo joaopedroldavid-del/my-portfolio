@@ -1,0 +1,32 @@
+<section class="pj" id="projects">
+  <div class="pj__grid">
+    <h2 class="pj__heading" appReveal>{{ t().projects.heading }}</h2>
+
+    <div class="pj__body">
+      <p class="pj__lead" appReveal [appRevealDelay]="80">{{ t().projects.lead }}</p>
+
+      <div class="pj__list">
+        @for (project of projects; track project.id) {
+          <article class="pj__card" appReveal [appRevealDelay]="$index * 90">
+            <h3 class="pj__name">{{ project.name }}</h3>
+            <p class="pj__description">{{ t().projects.description }}</p>
+
+            <ul class="pj__tech">
+              @for (tech of project.tech; track tech) {
+                <li>{{ tech }}</li>
+              }
+            </ul>
+
+            <button #testBtn type="button" class="pj__test" (click)="open(project, testBtn)">
+              {{ t().projects.testButton }}
+            </button>
+          </article>
+        }
+      </div>
+    </div>
+  </div>
+
+  @if (activeProject(); as project) {
+    <app-project-modal [project]="project" (closed)="close()" />
+  }
+</section>

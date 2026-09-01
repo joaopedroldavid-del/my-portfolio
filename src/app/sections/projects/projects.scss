@@ -1,0 +1,93 @@
+@use 'mixins' as m;
+
+.pj {
+  @include m.container;
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--border);
+}
+
+.pj__grid {
+  display: grid;
+  gap: var(--sp-6);
+  align-items: start;
+
+  @include m.bp(lg) {
+    grid-template-columns: 12rem 1fr;
+    gap: var(--sp-16);
+  }
+}
+
+.pj__heading {
+  @include m.label;
+  color: var(--muted);
+  padding-top: 0.4rem;
+}
+
+.pj__lead {
+  color: var(--muted);
+  max-width: var(--measure);
+}
+
+.pj__list {
+  margin-top: var(--sp-12);
+  display: grid;
+  gap: var(--sp-8);
+
+  @include m.bp(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.pj__card {
+  display: grid;
+  align-content: start;
+  gap: var(--sp-3);
+  padding: var(--sp-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.pj__name {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+}
+
+.pj__description {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.pj__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+
+  li {
+    @include m.label;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.2rem var(--sp-2);
+  }
+}
+
+.pj__test {
+  @include m.label;
+  justify-self: start;
+  margin-top: var(--sp-2);
+  padding: var(--sp-3) var(--sp-6);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--accent-on);
+  transition: background-color var(--dur-fast) var(--ease);
+
+  &:hover {
+    background: color-mix(in srgb, var(--accent) 86%, var(--ink));
+  }
+
+  &:focus-visible {
+    @include m.focus-ring;
+  }
+}

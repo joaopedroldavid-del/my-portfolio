@@ -1,0 +1,397 @@
+@use 'mixins' as m;
+
+.pm__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  background: var(--overlay);
+
+  @include m.motion-safe {
+    animation: pm-fade var(--dur-fast) var(--ease) both;
+
+    &.pm__backdrop--closing {
+      animation-name: pm-fade-out;
+    }
+  }
+}
+
+.pm__dialog {
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+  max-height: calc(100vh - var(--sp-16));
+  overflow-y: auto;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--sp-8);
+
+  @include m.motion-safe {
+    animation: pm-rise var(--dur) var(--ease) both;
+
+    &.pm__dialog--closing {
+      animation-name: pm-rise-out;
+    }
+  }
+}
+
+.pm__close {
+  position: absolute;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--muted);
+  transition: color var(--dur-fast) var(--ease);
+
+  &:hover {
+    color: var(--ink);
+  }
+
+  &:focus-visible {
+    @include m.focus-ring;
+  }
+}
+
+.pm__title {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  padding-right: var(--sp-8);
+}
+
+.pm__description,
+.pm__instructions {
+  margin-top: var(--sp-3);
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.pm__form {
+  margin-top: var(--sp-6);
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.pm__field {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.pm__field-label {
+  @include m.label;
+  color: var(--muted);
+}
+
+.pm__field select,
+.pm__field input {
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: var(--text-sm);
+
+  &:focus-visible {
+    @include m.focus-ring;
+  }
+}
+
+.pm__search {
+  @include m.label;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-6);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--accent-on);
+  transition: background-color var(--dur-fast) var(--ease);
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--accent) 86%, var(--ink));
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    @include m.focus-ring;
+  }
+}
+
+// Anel que gira enquanto a busca está em andamento. Sem motion-safe, fica
+// parado — ainda comunica "carregando" pela borda cortada, só não gira.
+.pm__spinner {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--accent-on) 40%, transparent);
+  border-top-color: var(--accent-on);
+
+  @include m.motion-safe {
+    animation: pm-spin 0.7s linear infinite;
+  }
+}
+
+.pm__result {
+  margin-top: var(--sp-6);
+}
+
+.pm__error {
+  color: var(--accent);
+  font-size: var(--text-sm);
+}
+
+// Três pontos pulsando enquanto a resposta não chega — o texto equivalente
+// ("Buscando…") já está no botão, então isto é só reforço visual.
+.pm__searching {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding-block: var(--sp-2);
+}
+
+.pm__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+
+  @include m.motion-safe {
+    animation: pm-bounce 1.2s var(--ease) infinite;
+
+    &:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+  }
+}
+
+// ── Resultado no estilo iOS Weather: número gigante, legendas pequenas ────────
+
+.pm__weather {
+  text-align: center;
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+}
+
+.pm__city {
+  @include m.label;
+  color: var(--muted);
+}
+
+.pm__temp {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 3rem + 3vw, 5rem);
+  font-weight: 400;
+  line-height: 1;
+  margin-top: var(--sp-2);
+}
+
+.pm__condition {
+  margin-top: var(--sp-1);
+  text-transform: capitalize;
+  color: var(--muted);
+}
+
+.pm__minmax {
+  margin-top: var(--sp-2);
+  @include m.label;
+  color: var(--muted);
+}
+
+.pm__note {
+  margin-top: var(--sp-4);
+  font-size: var(--text-label);
+  color: var(--muted);
+}
+
+// ── Ícones de condição ────────────────────────────────────────────────────
+// Formas simples em currentColor/tokens, sem biblioteca de ícones — cada uma
+// ganha sua própria animação de assinatura, todas paradas sem motion-safe.
+
+.wx-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-inline: auto;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.wx-icon--sunny {
+  .wx-sun {
+    fill: var(--accent);
+    stroke: none;
+
+    @include m.motion-safe {
+      animation: wx-pulse 2.4s ease-in-out infinite;
+      transform-origin: center;
+    }
+  }
+
+  .wx-rays {
+    stroke: var(--accent);
+    transform-origin: 32px 32px;
+
+    @include m.motion-safe {
+      animation: wx-spin 14s linear infinite;
+    }
+  }
+}
+
+.wx-icon--cloudy {
+  .wx-cloud {
+    fill: var(--muted);
+    stroke: none;
+  }
+
+  .wx-cloud--back,
+  .wx-cloud--front {
+    @include m.motion-safe {
+      animation: wx-drift 6s ease-in-out infinite alternate;
+    }
+  }
+
+  .wx-cloud--front {
+    fill: var(--ink);
+
+    @include m.motion-safe {
+      animation-direction: alternate-reverse;
+      animation-delay: -3s;
+    }
+  }
+}
+
+.wx-icon--rainy {
+  .wx-cloud {
+    fill: var(--muted);
+    stroke: none;
+  }
+
+  .wx-drop {
+    stroke: var(--accent);
+
+    @include m.motion-safe {
+      animation: wx-fall 1s ease-in infinite;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+}
+
+@include m.motion-safe {
+  @keyframes pm-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pm-fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes pm-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes pm-rise-out {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+    to {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+  }
+
+  @keyframes pm-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pm-bounce {
+    0%,
+    80%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.5;
+    }
+    40% {
+      transform: translateY(-5px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes wx-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.08);
+      opacity: 0.85;
+    }
+  }
+
+  @keyframes wx-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes wx-drift {
+    from {
+      transform: translateX(-2px);
+    }
+    to {
+      transform: translateX(2px);
+    }
+  }
+
+  @keyframes wx-fall {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(6px);
+      opacity: 0;
+    }
+  }
+}

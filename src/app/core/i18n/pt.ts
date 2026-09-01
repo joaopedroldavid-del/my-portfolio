@@ -19,6 +19,7 @@ export const PT = {
     themeLabel: 'Alternar tema',
     languageLabel: 'Idioma',
     mainNav: 'Navegação principal',
+    closeDialog: 'Fechar',
   },
 
   theme: {
@@ -36,6 +37,7 @@ export const PT = {
   nav: {
     about: 'Sobre',
     skills: 'Tecnologias',
+    projects: 'Projetos',
     experience: 'Trajetória',
     contact: 'Contato',
   },
@@ -74,6 +76,31 @@ export const PT = {
   skills: {
     heading: 'Tecnologias',
     lead: 'O que uso no dia a dia, agrupado por onde atua.',
+  },
+
+  projects: {
+    heading: 'Projetos',
+    // TODO(joão): rascunho meu — ajusta pra sua voz.
+    lead: 'Projetos com repositório e demo próprios, fora da trajetória na Cassol.',
+    // TODO(joão): rascunho meu — ajusta pra sua voz.
+    description:
+      'API que estima o clima de uma cidade brasileira numa data escolhida, a partir de dados ' +
+      'históricos do INMET, usando FastAPI e LangChain no back-end.',
+    // TODO(joão): rascunho meu — ajusta pra sua voz.
+    instructions: 'Escolha uma cidade e uma data para consultar a estimativa.',
+    testButton: 'Testar',
+    modal: {
+      cityLabel: 'Cidade',
+      dateLabel: 'Data',
+      searchButton: 'Buscar',
+      loading: 'Buscando…',
+      highLabel: 'Máx',
+      lowLabel: 'Mín',
+      historicalNote: 'Estimativa baseada em dados históricos (2020–2024) — não é uma previsão em tempo real.',
+      errorNotSupported: 'Esta cidade ainda não é suportada pela API.',
+      errorBadDate: 'Data inválida. Tente outra data.',
+      errorGeneric: 'Não foi possível buscar a previsão agora. Tente novamente.',
+    },
   },
 
   experience: {

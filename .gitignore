@@ -47,6 +47,10 @@ Thumbs.db
 .env
 .env.local
 
+# Gerado em build-time a partir do .env por scripts/generate-environment.mjs
+# — ver environment.example.ts para o formato.
+src/environments/environment.ts
+
 # TypeScript incremental build cache
 *.tsbuildinfo
 

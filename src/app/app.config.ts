@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
@@ -8,6 +9,9 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideClientHydration(withEventReplay()),
+    // Único consumidor: WeatherApiService, chamado a partir do modal de
+    // projetos — é a primeira chamada de rede do site.
+    provideHttpClient(),
     provideRouter(
       routes,
       // Necessário para a navegação por âncora entre as seções (#about, #contact).

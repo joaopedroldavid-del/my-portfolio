@@ -15,7 +15,7 @@ import { LOCALES, LOCALE_STORAGE_KEY, Locale } from '../../core/i18n/locale.mode
 import { ThemeService } from '../../core/theme/theme.service';
 
 /** Âncoras neutras de idioma — ver o comentário em `SECTIONS`. */
-type SectionId = 'about' | 'skills' | 'experience' | 'contact';
+type SectionId = 'about' | 'skills' | 'projects' | 'experience' | 'contact';
 
 @Component({
   selector: 'app-header',
@@ -45,6 +45,7 @@ export class Header {
   protected readonly sections: readonly SectionId[] = [
     'about',
     'skills',
+    'projects',
     'experience',
     'contact',
   ];

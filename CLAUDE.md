@@ -5,11 +5,18 @@
 Portfólio pessoal bilíngue (PT-BR / EN-US) de João Pedro Lourenço David,
 desenvolvedor na Cassol Centerlar.
 
-O site **é** o projeto de showcase: não há seção de projetos, porque ele entrou
-na área por dentro da empresa e não tem repositórios pessoais. Consequência
-direta para qualquer alteração: a qualidade do próprio código e da própria
-interface é o portfólio. Decisão técnica ruim aqui não é dívida técnica — é
-argumento perdido em entrevista.
+O site **é** o projeto de showcase: a trajetória profissional continua sendo o
+conteúdo central, porque ele entrou na área por dentro da empresa e a maior
+parte do que construiu não tem repositório próprio. Consequência direta para
+qualquer alteração: a qualidade do próprio código e da própria interface é o
+portfólio. Decisão técnica ruim aqui não é dívida técnica — é argumento
+perdido em entrevista.
+
+Existe uma exceção pontual: um projeto com repositório e demo **próprios**
+(fora da Cassol) ganha um cartão na seção **Projetos**. É o caso do
+`ai-weather-forecasting`, uma API de estimativa de clima. Tudo que não tem
+repositório próprio continua vivendo em Experiência/Tecnologias — a seção de
+Projetos não é uma lista geral de "coisas que ele fez".
 
 Site de página única com 5 seções, prerenderizado em build time. **Ainda não
 está em produção** — falta deploy na Vercel e três arquivos (ver
@@ -39,6 +46,13 @@ npm test             # Vitest, 17 testes
 npx tsc --noEmit -p tsconfig.app.json   # typecheck isolado, mais rápido que o build
 ```
 
+`npm start` e `npm run build` rodam antes um `pre*` script
+(`scripts/generate-environment.mjs`) que lê `.env` (não commitado — copie de
+`.env.example`) e gera `src/environments/environment.ts` (também não
+commitado — formato em `environment.example.ts`). É uma substituição em
+**build time**, não runtime: o site é 100% estático, sem servidor Node em
+produção, então não existe leitura de `.env` depois do build.
+
 ## Estrutura de pastas
 
 ```
@@ -49,15 +63,17 @@ src/
     core/
       i18n/                → serviço de locale, dicionários PT/EN, model
       theme/               → serviço de tema, ciclo de escolha, model
-      data/                → conteúdo tipado (experiência, skills, contato, formação)
+      data/                → conteúdo tipado (experiência, skills, contato, formação, projetos)
+      weather/             → cliente da API de clima (WeatherApiService) + conversão de data
       site.ts              → SITE_URL e constantes de Open Graph
     layout/
       shell/               → casca por idioma; injeta data.locale no i18n
       header/  footer/
     sections/
-      hero/  about/  skills/  experience/  contact/
+      hero/  about/  skills/  projects/  experience/  contact/
     shared/
       reveal/              → diretiva + serviço de revelação no scroll
+      project-modal/       → dialog de "testar projeto" (primeiro modal do site)
       locale-redirect/     → página '/' com escolha de idioma
       not-found/
   styles/
@@ -252,6 +268,11 @@ estrutura:
 (`Curriculo-JoaoPedroLourencoDavid.pdf` e `Resume-JoaoPedroLourencoDavid.pdf`), e
 os caminhos em `contact.ts` batem com eles.
 
+⚠️ **Bloqueio externo — CORS na API de clima:** `ai-weather-forecasting` não
+tem `CORSMiddleware` configurado. Sem isso, o navegador bloqueia a chamada do
+modal de Projetos para a API a partir do domínio do portfólio. Precisa ser
+corrigido naquele repositório (fora do escopo deste), não aqui.
+
 ⚠️ **Acoplamento por nome de arquivo:** os caminhos em `contact.ts` são strings
 literais. Renomear um PDF sem atualizar o código gera **404 silencioso** — o link
 continua clicável e nada no build acusa. Após qualquer troca de arquivo em
@@ -277,3 +298,15 @@ overrides explícitos ficam redundantes mas inofensivos), e `resource()`,
 - Não commitar `dist/` nem `.angular/` (já no `.gitignore`)
 - **O `package-lock.json` é commitado** de propósito — o `.gitignore` original
   o ignorava, o que tornaria os builds da Vercel não reproduzíveis
+
+---
+
+## Master Rules
+Do not follow these rules unless the user explicitly instructs you to do so.
+
+- For searching and reading, ALWAYS use the Haiku template from the default effort.
+- For creating plans, ALWAYS use the latest Sonnet template.
+- For writing code and reviewing, ALWAYS use the latest Opus template from the minimum effort.
+- NEVER sign anything on behalf of Claude/Anthropic (commits, all, comments ...)
+
+---

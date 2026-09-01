@@ -17,6 +17,7 @@ export const EN: Dict = {
     themeLabel: 'Toggle theme',
     languageLabel: 'Language',
     mainNav: 'Main navigation',
+    closeDialog: 'Close',
   },
 
   theme: {
@@ -34,6 +35,7 @@ export const EN: Dict = {
   nav: {
     about: 'About',
     skills: 'Stack',
+    projects: 'Projects',
     experience: 'Experience',
     contact: 'Contact',
   },
@@ -71,6 +73,31 @@ export const EN: Dict = {
   skills: {
     heading: 'Stack',
     lead: 'What I work with day to day, grouped by where it applies.',
+  },
+
+  projects: {
+    heading: 'Projects',
+    // TODO(joão): my draft — adjust to your voice.
+    lead: 'Projects with their own repository and demo, outside the Cassol experience.',
+    // TODO(joão): my draft — adjust to your voice.
+    description:
+      'An API that estimates the weather for a Brazilian city on a chosen date, based on historical ' +
+      'INMET data, using FastAPI and LangChain on the back end.',
+    // TODO(joão): my draft — adjust to your voice.
+    instructions: 'Pick a city and a date to look up the estimate.',
+    testButton: 'Test',
+    modal: {
+      cityLabel: 'City',
+      dateLabel: 'Date',
+      searchButton: 'Search',
+      loading: 'Searching…',
+      highLabel: 'High',
+      lowLabel: 'Low',
+      historicalNote: 'Estimate based on historical data (2020–2024) — not a real-time forecast.',
+      errorNotSupported: 'This city is not supported by the API yet.',
+      errorBadDate: 'Invalid date. Try another date.',
+      errorGeneric: 'Could not fetch the forecast right now. Please try again.',
+    },
   },
 
   experience: {
