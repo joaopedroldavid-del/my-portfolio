@@ -49,7 +49,12 @@
         <article class="xp__side" appReveal [appRevealDelay]="$index * 90">
           @for (role of org.roles; track role.start) {
             <div class="xp__side-head">
-              <h4 class="xp__title">{{ role.title[locale()] }}</h4>
+              <h4 class="xp__title">
+                {{ role.title[locale()] }}
+                @if (isCurrent(role)) {
+                  <span class="xp__now">{{ t().experience.current }}</span>
+                }
+              </h4>
               <p class="xp__side-org">{{ org.name }}</p>
               <p class="xp__range">{{ range(role) }}</p>
             </div>
