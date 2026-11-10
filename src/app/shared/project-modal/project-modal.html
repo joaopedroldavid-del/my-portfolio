@@ -19,14 +19,14 @@
     </button>
 
     <h3 id="pm-title" class="pm__title">{{ project().name }}</h3>
-    <p class="pm__description">{{ t().projects.description }}</p>
+    <p class="pm__description">{{ project().description[i18n.locale()] }}</p>
     <p class="pm__instructions">{{ t().projects.instructions }}</p>
 
     <form class="pm__form" (submit)="$event.preventDefault(); search()">
       <label class="pm__field">
         <span class="pm__field-label">{{ t().projects.modal.cityLabel }}</span>
         <select (change)="onCityChange($event)">
-          @for (city of project().cities; track city) {
+          @for (city of project().cities ?? []; track city) {
             <option [value]="city">{{ city }}</option>
           }
         </select>
