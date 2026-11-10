@@ -8,10 +8,9 @@
  */
 export const PT = {
   meta: {
-    title: 'João Pedro Lourenço David — Desenvolvedor de Software',
+    title: 'João Pedro Lourenço David — Desenvolvedor Full-Stack',
     description:
-      'Desenvolvedor de software com foco em Java, Spring Boot, Go e Angular. ' +
-      'Comecei na operação logística e hoje escrevo os sistemas que a movem.',
+      'Desenvolvedor full-stack com foco em Java, Python, Angular e React.',
   },
 
   a11y: {
@@ -43,11 +42,11 @@ export const PT = {
   },
 
   hero: {
-    role: 'Desenvolvedor de Software',
+    role: 'Desenvolvedor Full-Stack',
     headline: 'Da operação\nao código.',
     lead:
-      'Entrei na no mercado de trabalho pela logística, virei analista de dados e hoje desenvolvo ' +
-      'os sistemas que movem a operação.',
+      'Entrei no mercado de trabalho pela logística, virei analista de dados e hoje desenvolvo ' +
+      'software de ponta a ponta, do back-end à interface.',
     location: 'São Paulo, SP',
     ctaExperience: 'Ver trajetória',
     ctaResume: 'Baixar currículo',
@@ -64,11 +63,12 @@ export const PT = {
         'logístico e automações em Python e SQL. Uma delas virou um sistema de ' +
         'mensageria que alcança mais de mil clientes por dia. Foi ali que a ' +
         'programação deixou de ser ferramenta e virou o trabalho.',
-      'Hoje atuo como desenvolvedor, construindo APIs e sistemas de gestão com ' +
-        'Java, interfaces com Angular e integrações entre sistemas internos, ' +
-        'ERPs e serviços externos. Minha experiência anterior na operação continua ' +
-        'sendo um diferencial: antes de pensar em como escrever o código, procuro ' +
-        'entender o problema que ele precisa resolver.',
+      'Hoje trabalho como desenvolvedor full-stack: APIs e sistemas de gestão em Java e ' +
+        'Python, interfaces em Angular e React, e integrações entre sistemas, ERPs e ' +
+        'serviços externos. Também desenvolvo projetos próprios, como o e-commerce da Ita ' +
+        'Calçados, que levei da arquitetura à produção. A experiência na operação continua ' +
+        'sendo um diferencial: antes de pensar em como escrever o código, procuro entender ' +
+        'o problema que ele precisa resolver.',
     ],
     photoAlt: 'Retrato de João Pedro Lourenço David',
   },
@@ -80,8 +80,6 @@ export const PT = {
 
   projects: {
     heading: 'Projetos',
-    // TODO(joão): rascunho meu — ajusta pra sua voz.
-    lead: 'Projetos com repositório e demo próprios, fora da trajetória na Cassol.',
     // TODO(joão): rascunho meu — ajusta pra sua voz.
     instructions: 'Escolha uma cidade e uma data para consultar a estimativa.',
     testButton: 'Testar',
@@ -104,7 +102,7 @@ export const PT = {
     heading: 'Trajetória',
     current: 'Atual',
     presentLabel: 'atual',
-    otherWork: 'Outros trabalhos',
+    otherWork: 'Projetos paralelos',
   },
 
   education: {
