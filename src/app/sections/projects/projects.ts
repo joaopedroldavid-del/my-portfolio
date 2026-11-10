@@ -15,6 +15,7 @@ import { Reveal } from '../../shared/reveal/reveal';
 export class Projects {
   private readonly i18n = inject(I18nService);
   protected readonly t = this.i18n.t;
+  protected readonly locale = this.i18n.locale;
   protected readonly projects = PROJECTS;
 
   private readonly _activeProject = signal<Project | null>(null);
