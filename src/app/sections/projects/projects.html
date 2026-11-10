@@ -9,7 +9,7 @@
         @for (project of projects; track project.id) {
           <article class="pj__card" appReveal [appRevealDelay]="$index * 90">
             <h3 class="pj__name">{{ project.name }}</h3>
-            <p class="pj__description">{{ t().projects.description }}</p>
+            <p class="pj__description">{{ project.description[locale()] }}</p>
 
             <ul class="pj__tech">
               @for (tech of project.tech; track tech) {
@@ -17,9 +17,16 @@
               }
             </ul>
 
-            <button #testBtn type="button" class="pj__test" (click)="open(project, testBtn)">
-              {{ t().projects.testButton }}
-            </button>
+            @if (project.cities?.length) {
+              <button #testBtn type="button" class="pj__test" (click)="open(project, testBtn)">
+                {{ t().projects.testButton }}
+              </button>
+            }
+            @if (project.siteUrl) {
+              <a class="pj__test" [href]="project.siteUrl" target="_blank" rel="noopener noreferrer">
+                {{ t().projects.visitSite }} ↗
+              </a>
+            }
           </article>
         }
       </div>
