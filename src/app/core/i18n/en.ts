@@ -80,12 +80,9 @@ export const EN: Dict = {
     // TODO(joão): my draft — adjust to your voice.
     lead: 'Projects with their own repository and demo, outside the Cassol experience.',
     // TODO(joão): my draft — adjust to your voice.
-    description:
-      'An API that estimates the weather for a Brazilian city on a chosen date, based on historical ' +
-      'INMET data, using FastAPI and LangChain on the back end.',
-    // TODO(joão): my draft — adjust to your voice.
     instructions: 'Pick a city and a date to look up the estimate.',
     testButton: 'Test',
+    visitSite: 'Visit site',
     modal: {
       cityLabel: 'City',
       dateLabel: 'Date',
