@@ -6,10 +6,9 @@ import { Dict } from './pt';
  */
 export const EN: Dict = {
   meta: {
-    title: 'João Pedro Lourenço David — Software Developer',
+    title: 'João Pedro Lourenço David — Full-Stack Developer',
     description:
-      'Software developer focused on Java, Spring Boot, Go and Angular. ' +
-      'I started in logistics operations and now build the systems that run them.',
+      'Full-stack developer focused on Java, Python, Angular and React.',
   },
 
   a11y: {
@@ -41,11 +40,11 @@ export const EN: Dict = {
   },
 
   hero: {
-    role: 'Software Developer',
+    role: 'Full-Stack Developer',
     headline: 'From operations\nto code.',
     lead:
-      'I started my career in logistics, transitioned into data analysis, and now build the ' +
-      'systems that move the operation.',
+      'I started my career in logistics, moved into data analysis, and now build software end ' +
+      'to end, from the back end to the interface.',
     location: 'São Paulo, Brazil',
     ctaExperience: 'See experience',
     ctaResume: 'Download resume',
@@ -61,11 +60,12 @@ export const EN: Dict = {
         'automations in Python and SQL. One of them became a messaging system that ' +
         'reaches over a thousand customers a day. That is where programming stopped ' +
         'being a tool and became the job.',
-      'Today, I work as a developer, building APIs and management systems using ' +
-        'Java, interfaces with Angular, and integrations between internal systems, ' +
-        'ERPs, and external services. My previous experience in operations continues ' +
-        'to be a key strength: before thinking about how to write the code, I try ' +
-        'to understand the problem it needs to solve.',
+      'Today I work as a full-stack developer: APIs and management systems in Java and ' +
+        'Python, interfaces in Angular and React, and integrations between systems, ERPs and ' +
+        'external services. I also build my own projects, like the Ita Calçados e-commerce, ' +
+        'which I took from architecture to production. My background in operations is still ' +
+        'a strength: before thinking about how to write the code, I try to understand the ' +
+        'problem it needs to solve.',
     ],
     photoAlt: 'Portrait of João Pedro Lourenço David',
   },
@@ -77,8 +77,6 @@ export const EN: Dict = {
 
   projects: {
     heading: 'Projects',
-    // TODO(joão): my draft — adjust to your voice.
-    lead: 'Projects with their own repository and demo, outside the Cassol experience.',
     // TODO(joão): my draft — adjust to your voice.
     instructions: 'Pick a city and a date to look up the estimate.',
     testButton: 'Test',
@@ -101,7 +99,7 @@ export const EN: Dict = {
     heading: 'Experience',
     current: 'Current',
     presentLabel: 'present',
-    otherWork: 'Other work',
+    otherWork: 'Side work',
   },
 
   education: {
