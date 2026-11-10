@@ -3,20 +3,24 @@
 ## O que é este projeto
 
 Portfólio pessoal bilíngue (PT-BR / EN-US) de João Pedro Lourenço David,
-desenvolvedor na Cassol Centerlar.
+desenvolvedor full-stack.
 
-O site **é** o projeto de showcase: a trajetória profissional continua sendo o
-conteúdo central, porque ele entrou na área por dentro da empresa e a maior
-parte do que construiu não tem repositório próprio. Consequência direta para
-qualquer alteração: a qualidade do próprio código e da própria interface é o
+O site **é** o projeto de showcase. Consequência direta para qualquer
+alteração: a qualidade do próprio código e da própria interface é o
 portfólio. Decisão técnica ruim aqui não é dívida técnica — é argumento
 perdido em entrevista.
 
-Existe uma exceção pontual: um projeto com repositório e demo **próprios**
-(fora da Cassol) ganha um cartão na seção **Projetos**. É o caso do
-`ai-weather-forecasting`, uma API de estimativa de clima. Tudo que não tem
-repositório próprio continua vivendo em Experiência/Tecnologias — a seção de
-Projetos não é uma lista geral de "coisas que ele fez".
+**O portfólio é dele, não de um empregador.** Meta, Hero, Sobre e Projetos
+falam do desenvolvedor de forma genérica; empresas (hoje a Cassol Centerlar)
+aparecem só na Trajetória, como um emprego entre outros. Nenhum texto fora da
+Trajetória deve depender de onde ele trabalha no momento.
+
+A seção **Projetos** reúne projetos dele com algo público para mostrar —
+repositório, demo ou site em produção. Hoje: o e-commerce da Ita Calçados
+(link para o site) e o `ai-weather-forecasting` (demo no modal). Um cartão só
+mostra o botão "Testar" quando o projeto tem demo (`cities`) e o link
+"Visitar site" quando tem `siteUrl`. A seção não tem frase de introdução, só
+o título.
 
 Site de página única com 5 seções, prerenderizado em build time. **Ainda não
 está em produção** — falta deploy na Vercel e três arquivos (ver
@@ -42,7 +46,7 @@ Objetivo: um recrutador PT ou EN encontra no Google e lê em 90 segundos.
 npm install          # instalar dependências
 npm start            # servidor de desenvolvimento (porta 4200)
 npm run build        # build de produção com prerender das 3 rotas
-npm test             # Vitest, 17 testes
+npm test             # Vitest, 23 testes
 npx tsc --noEmit -p tsconfig.app.json   # typecheck isolado, mais rápido que o build
 ```
 
@@ -203,9 +207,9 @@ sobre o accent precisa ser quase-preto. O token resolve isso por tema.
 
 - **Não adicione barra ou porcentagem de proficiência** nas skills. Foi decisão
   explícita: é arbitrário e frágil de defender em entrevista.
-- **Não intercale os trabalhos paralelos (Vetto AI, freelance) entre os cargos
-  da Cassol.** A progressão estagiário → analista → programador é o argumento
-  central da página; quebrá-la esvazia o site.
+- **Não intercale os trabalhos paralelos entre os cargos de uma empresa.** Eles
+  ficam em "Projetos paralelos" / "Side work" (`SIDE_EXPERIENCE`), depois da
+  trajetória principal, que precisa continuar lida como progressão.
 - **Não adicione formulário de contato.** Exige backend, cria ponto de falha e
   quase ninguém preenche.
 - **Não digite o intervalo total da empresa à mão** — ele é derivado dos cargos
@@ -223,7 +227,7 @@ sobre o accent precisa ser quase-preto. O token resolve isso por tema.
 
 ## Testes
 
-- 17 testes em 4 arquivos, cobrindo **lógica real** — nada de teste de
+- 23 testes em 6 arquivos, cobrindo **lógica real** — nada de teste de
   componente estático, que não agrega.
 - O que é coberto: ciclo de tema, formatação de data por idioma, detecção de
   locale do browser, paridade estrutural dos dicionários.
@@ -261,7 +265,7 @@ estrutura:
 |---|---|---|
 | Foto de perfil | `public/img/portrait.svg` | Placeholder "JP". Substituir o arquivo basta — sem mudança de código. |
 | `SITE_URL` | `core/site.ts` | Placeholder. Alimenta canonical, hreflang e OG — OG exige URL absoluta. Trocar após o primeiro deploy. |
-| Textos do Hero e do Sobre | `core/i18n/pt.ts` e `en.ts` | Rascunho meu, marcado com `TODO(joão)`. São a voz dele. |
+| Instruções do modal de Projetos | `core/i18n/pt.ts` e `en.ts` | Rascunho marcado com `TODO(joão)`. Hero e Sobre já foram revisados por ele. |
 | URL do LinkedIn | `core/data/contact.ts` | Conferir uma vez. O currículo traz um formato inválido (sem `/in/`, com acentos, que slugs do LinkedIn não aceitam); o valor atual é a forma ASCII. |
 
 **Resolvido:** os PDFs do currículo já estão em `public/cv/`
