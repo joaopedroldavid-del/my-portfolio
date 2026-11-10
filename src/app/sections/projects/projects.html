@@ -3,8 +3,6 @@
     <h2 class="pj__heading" appReveal>{{ t().projects.heading }}</h2>
 
     <div class="pj__body">
-      <p class="pj__lead" appReveal [appRevealDelay]="80">{{ t().projects.lead }}</p>
-
       <div class="pj__list">
         @for (project of projects; track project.id) {
           <article class="pj__card" appReveal [appRevealDelay]="$index * 90">
