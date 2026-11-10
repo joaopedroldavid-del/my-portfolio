@@ -48,7 +48,7 @@ export class ProjectModal {
   readonly project = input.required<Project>();
   readonly closed = output<void>();
 
-  private readonly i18n = inject(I18nService);
+  protected readonly i18n = inject(I18nService);
   protected readonly t = this.i18n.t;
 
   private readonly weatherApi = inject(WeatherApiService);
@@ -93,8 +93,8 @@ export class ProjectModal {
   }
 
   protected search(): void {
-    if (!this.date()) return;
-    const location = this.city() ?? this.project().cities[0];
+    const location = this.city() ?? this.project().cities?.[0];
+    if (!this.date() || !location) return;
     this.weatherApi.search(location, this.date());
   }
 
