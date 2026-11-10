@@ -83,12 +83,9 @@ export const PT = {
     // TODO(joão): rascunho meu — ajusta pra sua voz.
     lead: 'Projetos com repositório e demo próprios, fora da trajetória na Cassol.',
     // TODO(joão): rascunho meu — ajusta pra sua voz.
-    description:
-      'API que estima o clima de uma cidade brasileira numa data escolhida, a partir de dados ' +
-      'históricos do INMET, usando FastAPI e LangChain no back-end.',
-    // TODO(joão): rascunho meu — ajusta pra sua voz.
     instructions: 'Escolha uma cidade e uma data para consultar a estimativa.',
     testButton: 'Testar',
+    visitSite: 'Visitar site',
     modal: {
       cityLabel: 'Cidade',
       dateLabel: 'Data',
