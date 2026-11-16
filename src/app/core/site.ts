@@ -11,7 +11,7 @@
  * Se depois você apontar um domínio próprio, muda só aqui.
  * ─────────────────────────────────────────────────────────────────────────────
  */
-export const SITE_URL = 'https://portfolio-joao-pedro-david.vercel.app';
+export const SITE_URL = 'https://www.joaopedroldavid.dev';
 
 export const SITE_NAME = 'Portfolio: JoaoPedroLDavid';
 

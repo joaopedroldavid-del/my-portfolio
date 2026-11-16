@@ -23,7 +23,9 @@ e confirme que cada `href="/cv/..."` do HTML gerado tem arquivo correspondente e
 
 ## Depois do primeiro deploy
 
-Atualizar `SITE_URL` em `src/app/core/site.ts` com a URL real. Ela alimenta
+Feito: `SITE_URL` em `src/app/core/site.ts` aponta para
+`https://www.joaopedroldavid.dev`. Ao trocar de domínio, atualize-o com a URL
+final (a que responde 200, não a que redireciona). Ela alimenta
 canonical, hreflang e Open Graph, e OG **exige URL absoluta** — com o valor
 errado o preview do link no LinkedIn e no WhatsApp cai para texto puro.
 
