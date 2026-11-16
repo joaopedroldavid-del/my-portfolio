@@ -8,9 +8,9 @@
  */
 export const PT = {
   meta: {
-    title: 'João Pedro Lourenço David — Desenvolvedor Full-Stack',
+    title: 'João Pedro Lourenço David — Desenvolvedor Backend Java | Full-Stack',
     description:
-      'Desenvolvedor full-stack com foco em Java, Python, Angular e React.',
+      'Desenvolvedor full-stack com foco em backend Java: Spring Boot, Jakarta EE e Angular.',
   },
 
   a11y: {
@@ -42,7 +42,7 @@ export const PT = {
   },
 
   hero: {
-    role: 'Desenvolvedor Full-Stack',
+    role: 'Desenvolvedor Backend Java · Full-Stack',
     headline: 'Da operação\nao código.',
     lead:
       'Entrei no mercado de trabalho pela logística, virei analista de dados e hoje desenvolvo ' +
