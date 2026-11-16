@@ -22,9 +22,9 @@ mostra o botão "Testar" quando o projeto tem demo (`cities`) e o link
 "Visitar site" quando tem `siteUrl`. A seção não tem frase de introdução, só
 o título.
 
-Site de página única com 5 seções, prerenderizado em build time. **Ainda não
-está em produção** — falta deploy na Vercel e três arquivos (ver
-[Pendências](#pendências)).
+Site de página única com 5 seções, prerenderizado em build time. **Em produção
+na Vercel** em `https://www.joaopedroldavid.dev` (o domínio sem `www` responde
+com 308 para ele). Ainda há ajustes pendentes (ver [Pendências](#pendências)).
 
 Objetivo: um recrutador PT ou EN encontra no Google e lê em 90 segundos.
 
@@ -264,13 +264,23 @@ estrutura:
 | O que | Onde | Situação |
 |---|---|---|
 | Foto de perfil | `public/img/portrait.svg` | Placeholder "JP". Substituir o arquivo basta — sem mudança de código. |
-| `SITE_URL` | `core/site.ts` | Placeholder. Alimenta canonical, hreflang e OG — OG exige URL absoluta. Trocar após o primeiro deploy. |
 | Instruções do modal de Projetos | `core/i18n/pt.ts` e `en.ts` | Rascunho marcado com `TODO(joão)`. Hero e Sobre já foram revisados por ele. |
 | URL do LinkedIn | `core/data/contact.ts` | Conferir uma vez. O currículo traz um formato inválido (sem `/in/`, com acentos, que slugs do LinkedIn não aceitam); o valor atual é a forma ASCII. |
 
-**Resolvido:** os PDFs do currículo já estão em `public/cv/`
-(`Curriculo-JoaoPedroLourencoDavid.pdf` e `Resume-JoaoPedroLourencoDavid.pdf`), e
-os caminhos em `contact.ts` batem com eles.
+**Resolvido:**
+
+- `SITE_URL` em `core/site.ts` aponta para `https://www.joaopedroldavid.dev`,
+  a URL final, com `www`. Não use a forma sem `www`: ela responde com redirect,
+  e canonical e `og:url` devem apontar para a URL que serve a página com 200.
+- Os PDFs do currículo estão em `public/cv/`
+  (`Curriculo-JoaoPedroLourencoDavid.pdf` e `Resume-JoaoPedroLourencoDavid.pdf`),
+  e os caminhos em `contact.ts` batem com eles.
+
+**Fonte da verdade do conteúdo:** o currículo em inglês
+(`Resume-JoaoPedroLourencoDavid.pdf`). Trajetória, tecnologias, idiomas e o
+cargo do hero seguem esse currículo. O PDF em português é uma tradução dele;
+ao trocar o currículo em inglês, os dados em `core/data/` e o PDF em português
+precisam ser atualizados junto.
 
 ⚠️ **Bloqueio externo — CORS na API de clima:** `ai-weather-forecasting` não
 tem `CORSMiddleware` configurado. Sem isso, o navegador bloqueia a chamada do
@@ -297,8 +307,17 @@ overrides explícitos ficam redundantes mas inofensivos), e `resource()`,
 
 ## Git e PRs
 
-- Branch: `feat/`, `fix/`, `chore/` + descrição em kebab-case
-- Commits no imperativo, descrevendo o *porquê* quando não for óbvio
+Seguem as regras globais do autor (`~/.claude/Rules.md`):
+
+- Branch: `joao.david-[feature]-[descricao]`, por exemplo
+  `joao.david-curriculo-sincronizacao_curriculo_v2`.
+- Mensagem de commit com prefixo `ADD:`, `FIX:`, `DEPRECATED:` ou `REMOVE:` e
+  substantivo descritivo, nunca verbo no imperativo. Exemplo:
+  `FIX: trajetória profissional alinhada ao currículo v2`.
+- Com 4 ou mais arquivos alterados, um commit por arquivo.
+- Nenhuma assinatura do Claude (`Co-Authored-By`, "Generated with Claude
+  Code") em commits ou PRs.
+- Commit e push só depois do aval explícito de QA do autor.
 - Não commitar `dist/` nem `.angular/` (já no `.gitignore`)
 - **O `package-lock.json` é commitado** de propósito — o `.gitignore` original
   o ignorava, o que tornaria os builds da Vercel não reproduzíveis
