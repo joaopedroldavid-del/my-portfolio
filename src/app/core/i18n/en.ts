@@ -6,9 +6,9 @@ import { Dict } from './pt';
  */
 export const EN: Dict = {
   meta: {
-    title: 'João Pedro Lourenço David — Full-Stack Developer',
+    title: 'João Pedro Lourenço David — Java Backend Developer | Full-Stack',
     description:
-      'Full-stack developer focused on Java, Python, Angular and React.',
+      'Full-stack developer focused on Java backend: Spring Boot, Jakarta EE and Angular.',
   },
 
   a11y: {
@@ -40,7 +40,7 @@ export const EN: Dict = {
   },
 
   hero: {
-    role: 'Full-Stack Developer',
+    role: 'Java Backend Developer · Full-Stack',
     headline: 'From operations\nto code.',
     lead:
       'I started my career in logistics, moved into data analysis, and now build software end ' +
