@@ -15,17 +15,33 @@ import { SkillGroup } from './content.model';
  */
 export const SKILL_GROUPS: readonly SkillGroup[] = [
   {
+    id: 'languages',
+    label: { pt: 'Linguagens', en: 'Languages' },
+    items: [
+      'Java',
+      'Python',
+      'TypeScript',
+      'JavaScript',
+      'SQL',
+      'Go',
+    ],
+  },
+  {
     id: 'backend',
     label: { pt: 'Backend', en: 'Backend' },
     items: [
-      'Java',
       'Spring Boot',
       'Spring Data JPA',
       'Hibernate',
       'Jakarta EE',
+      'JAX-RS',
       'JSF',
+      'PrimeFaces',
       'Maven',
-      'Go',
+      'FastAPI',
+      'Flask',
+      'SQLAlchemy',
+      'Pydantic',
     ],
   },
   {
@@ -34,32 +50,69 @@ export const SKILL_GROUPS: readonly SkillGroup[] = [
     items: [
       'Angular',
       'React',
-      'TypeScript',
+      'Next.js',
       'Native Federation',
-      'JavaScript',
       'HTML',
       'CSS',
-      'Next.js',
+    ],
+  },
+  {
+    id: 'databases',
+    label: { pt: 'Bancos de dados', en: 'Databases' },
+    items: [
+      'Oracle',
+      'PostgreSQL',
+      'Supabase',
+      'Snowflake',
+      'Redis',
+    ],
+  },
+  {
+    id: 'security',
+    label: { pt: 'Segurança', en: 'Security' },
+    items: [
+      'Keycloak',
+    ],
+  },
+  {
+    id: 'testing',
+    label: { pt: 'Testes', en: 'Testing' },
+    items: [
+      'Pytest',
+      'Vitest',
+      'Playwright',
     ],
   },
   {
     id: 'data',
     label: { pt: 'Dados & BI', en: 'Data & BI' },
-    items: ['Oracle', 'Snowflake', 'Supabase', 'SQL', 'Power BI', 'Excel', 'VBA'],
-  },
-  {
-    id: 'python',
-    label: { pt: 'Python & IA', en: 'Python' },
-    items: ['Python', 'FastAPI', 'Flask', 'Pandas', 'LangChain', 'GenAI'],
+    items: [
+      'Pandas',
+      'Power BI',
+      'Excel',
+      'VBA',
+    ],
   },
   {
     id: 'ai',
     label: { pt: 'IA', en: 'AI' },
-    items: ['Claude Ecossytem', 'Codex', 'Cursor'],
+    items: [
+      'LangChain',
+      'Claude Code',
+      'Codex',
+      'Cursor',
+    ],
   },
   {
-    id: 'process',
-    label: { pt: 'Processo', en: 'Process' },
-    items: ['Git', 'Scrum', 'Kanban'],
+    id: 'tools',
+    label: { pt: 'Ferramentas & métodos', en: 'Tools & Methods' },
+    items: [
+      'Git',
+      'GitHub',
+      'GitLab',
+      'Vercel',
+      'Scrum',
+      'Kanban',
+    ],
   },
 ];
