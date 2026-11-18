@@ -1,31 +1,22 @@
 @use 'mixins' as m;
 
 .pj {
-  @include m.container;
-  padding-block: var(--section-y);
-  border-top: 1px solid var(--border);
+  @include m.tile(var(--surface));
 }
 
 .pj__grid {
+  @include m.container;
   display: grid;
-  gap: var(--sp-6);
-  align-items: start;
-
-  @include m.bp(lg) {
-    grid-template-columns: 12rem 1fr;
-    gap: var(--sp-16);
-  }
+  gap: var(--sp-12);
 }
 
 .pj__heading {
-  @include m.label;
-  color: var(--muted);
-  padding-top: 0.4rem;
+  @include m.section-title;
 }
 
 .pj__list {
   display: grid;
-  gap: var(--sp-8);
+  gap: var(--sp-4);
 
   @include m.bp(md) {
     grid-template-columns: repeat(2, 1fr);
@@ -33,24 +24,27 @@
 }
 
 .pj__card {
+  position: relative;
   display: grid;
   align-content: start;
+  justify-items: start;
   gap: var(--sp-3);
-  padding: var(--sp-6);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  padding: var(--sp-8);
+  background: var(--bg);
+  border-radius: var(--radius-lg);
 }
 
 .pj__name {
   font-family: var(--font-display);
   font-size: var(--text-h3);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  letter-spacing: 0.007em;
 }
 
 .pj__description {
   color: var(--muted);
-  font-size: var(--text-sm);
-  line-height: 1.55;
+  font-size: var(--text-body);
 }
 
 .pj__tech {
@@ -60,28 +54,76 @@
 
   li {
     @include m.label;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 0.2rem var(--sp-2);
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--fill-quiet);
+    border-radius: var(--radius-pill);
+    padding: var(--sp-1) var(--sp-3);
   }
 }
 
-.pj__test {
-  @include m.label;
-  justify-self: start;
-  margin-top: var(--sp-2);
-  padding: var(--sp-3) var(--sp-6);
-  border-radius: var(--radius-pill);
-  background: var(--accent);
-  color: var(--accent-on);
-  transition: background-color var(--dur-fast) var(--ease);
+.pj__overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  color: var(--ink);
+  cursor: pointer;
 
-  &:hover {
-    background: color-mix(in srgb, var(--accent) 86%, var(--ink));
+  &:hover,
+  &:focus-visible {
+    background: var(--veil);
+    backdrop-filter: blur(8px);
   }
 
   &:focus-visible {
-    @include m.focus-ring;
+    border-radius: inherit;
+  }
+
+  @include m.motion-safe {
+    transition:
+      background-color var(--dur) var(--ease),
+      backdrop-filter var(--dur) var(--ease);
+  }
+}
+
+.pj__overlay-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 600;
+  letter-spacing: 0.007em;
+  opacity: 0;
+
+  .pj__overlay:hover &,
+  .pj__overlay:focus-visible & {
+    opacity: 1;
+  }
+
+  @include m.motion-safe {
+    transition: opacity var(--dur) var(--ease);
+  }
+}
+
+@media (hover: none) {
+  .pj__card {
+    padding-bottom: calc(var(--sp-8) + var(--sp-12));
+  }
+
+  .pj__overlay {
+    place-items: end start;
+    padding: var(--sp-8);
+  }
+
+  .pj__overlay-label {
+    opacity: 1;
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: 400;
+    letter-spacing: var(--tracking-body);
+    color: var(--link);
   }
 }
