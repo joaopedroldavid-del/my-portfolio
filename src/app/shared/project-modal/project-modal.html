@@ -37,7 +37,7 @@
         <input type="date" (change)="onDateChange($event)" />
       </label>
 
-      <button type="submit" class="pm__search" [disabled]="loading() || !date()">
+      <button type="submit" class="pm__search btn btn--primary" [disabled]="loading() || !date()">
         @if (loading()) {
           <span class="pm__spinner" aria-hidden="true"></span>
         }
