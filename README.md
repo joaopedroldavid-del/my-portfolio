@@ -103,14 +103,25 @@ impossível.
 Datas são formatadas com `Intl.DateTimeFormat.formatToParts`, usando apenas as
 partes de mês e ano — o `format` direto em português devolveria `mai. de 2025`.
 
+### Direção visual: design system do apple.com
+
+O visual segue um design system extraído das folhas de estilo públicas do
+apple.com: fundo neutro, um único azul (`#0071e3` nos botões, `#0066cc` /
+`#2997ff` nos links), títulos grandes em peso 600, botões pill e seções em
+faixas full-bleed que alternam branco, `#f5f5f7` e preto.
+
+Tudo passa pelos tokens de `src/styles/_tokens.scss`; os componentes só leem
+custom properties. A tipografia usa a fonte do sistema (SF nos aparelhos
+Apple, Helvetica/Arial no resto): nenhum arquivo de fonte é baixado.
+
 ---
 
 ## Acessibilidade
 
 - Contraste WCAG AA verificado numericamente nos dois temas
-- O botão de tema tem cor de texto **invertida por tema**: branco sobre o accent
-  passa no claro (6,4:1) mas falharia no escuro (3,1:1), então existe um token
-  `--accent-on`
+- Texto sobre o accent vem do token `--accent-on` (branco, 4,7:1 nos dois
+  temas), e o azul de texto (`--link`) é separado do azul de botão para passar
+  AA sobre fundo preto
 - `prefers-reduced-motion` desliga toda animação
 - Navegação por teclado com foco visível e link para saltar a navegação
 - Âncoras de seção são neutras de idioma (`#about`, não `#sobre`), para que
