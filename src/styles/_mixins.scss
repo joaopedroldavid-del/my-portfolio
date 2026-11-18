@@ -31,19 +31,33 @@ $breakpoints: (
   padding-inline: var(--gutter);
 }
 
-// Rótulo em mono, caixa alta e tracking aberto — o motivo visual das tags.
+@mixin tile($background: var(--bg)) {
+  background-color: $background;
+  padding-block: var(--section-y);
+}
+
+@mixin section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: var(--tracking-h2);
+  text-align: center;
+  color: var(--ink);
+}
+
 @mixin label {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: var(--text-label);
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.33;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
 }
 
 // Anel de foco consistente e visível nos dois temas.
 @mixin focus-ring {
   outline: 2px solid var(--accent);
-  outline-offset: 3px;
+  outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
 

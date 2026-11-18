@@ -1,30 +1,18 @@
 @use 'mixins' as m;
 
 .ab {
-  @include m.container;
-  padding-block: var(--section-y);
-  border-top: 1px solid var(--border);
+  @include m.tile(var(--surface));
 }
 
-// Rótulo da seção à esquerda, conteúdo à direita — estrutura editorial que se
-// repete em todas as seções e é o que dá ritmo à página.
 .ab__grid {
+  @include m.container;
   display: grid;
-  gap: var(--sp-6);
-  // Sem isto o rótulo da seção estica por toda a altura da linha do grid.
-  align-items: start;
-
-  @include m.bp(lg) {
-    grid-template-columns: 12rem 1fr;
-    gap: var(--sp-16);
-  }
+  justify-items: center;
+  gap: var(--sp-12);
 }
 
 .ab__heading {
-  @include m.label;
-  color: var(--muted);
-  // Alinha com a primeira linha do corpo em telas grandes.
-  padding-top: 0.4rem;
+  @include m.section-title;
 }
 
 .ab__body {
@@ -33,7 +21,8 @@
 
 .ab__p {
   font-size: var(--text-lead);
-  line-height: 1.6;
+  line-height: 1.5;
+  letter-spacing: 0.011em;
 
   + .ab__p {
     margin-top: var(--sp-6);
@@ -43,18 +32,22 @@
 .ab__meta {
   margin-top: var(--sp-12);
   display: grid;
-  gap: var(--sp-8);
+  gap: var(--sp-4);
 
   @include m.bp(md) {
     grid-template-columns: 1fr 1fr;
   }
 }
 
+.ab__item {
+  padding: var(--sp-6);
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+}
+
 .ab__item dt {
-  @include m.label;
-  color: var(--muted);
-  padding-bottom: var(--sp-3);
-  border-bottom: 1px solid var(--border);
+  font-size: var(--text-body);
+  font-weight: 600;
   margin-bottom: var(--sp-3);
 }
 
@@ -62,7 +55,7 @@
   font-size: var(--text-sm);
 
   + dd {
-    margin-top: var(--sp-2);
+    margin-top: var(--sp-3);
   }
 }
 
@@ -79,10 +72,6 @@
 
 .ab__when {
   @include m.label;
+  font-weight: 400;
   margin-top: var(--sp-1);
-}
-
-.ab__expected {
-  text-transform: none;
-  letter-spacing: 0;
 }

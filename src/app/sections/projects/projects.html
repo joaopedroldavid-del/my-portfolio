@@ -16,13 +16,24 @@
             </ul>
 
             @if (project.cities?.length) {
-              <button #testBtn type="button" class="pj__test" (click)="open(project, testBtn)">
-                {{ t().projects.testButton }}
+              <button
+                #testBtn
+                type="button"
+                class="pj__overlay"
+                [attr.aria-label]="t().projects.testButton + ' — ' + project.name"
+                (click)="open(project, testBtn)"
+              >
+                <span class="pj__overlay-label">{{ t().projects.testButton }}</span>
               </button>
-            }
-            @if (project.siteUrl) {
-              <a class="pj__test" [href]="project.siteUrl" target="_blank" rel="noopener noreferrer">
-                {{ t().projects.visitSite }} ↗
+            } @else if (project.siteUrl) {
+              <a
+                class="pj__overlay"
+                [href]="project.siteUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                [attr.aria-label]="t().projects.visitSite + ' — ' + project.name"
+              >
+                <span class="pj__overlay-label arrow-external">{{ t().projects.visitSite }}</span>
               </a>
             }
           </article>

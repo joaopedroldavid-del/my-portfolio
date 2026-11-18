@@ -1,54 +1,62 @@
 @use 'mixins' as m;
 
 .sk {
-  @include m.container;
-  padding-block: var(--section-y);
-  border-top: 1px solid var(--border);
+  @include m.tile;
 }
 
 .sk__grid {
+  @include m.container;
   display: grid;
+  justify-items: center;
   gap: var(--sp-6);
-  align-items: start;
-
-  @include m.bp(lg) {
-    grid-template-columns: 12rem 1fr;
-    gap: var(--sp-16);
-  }
 }
 
 .sk__heading {
-  @include m.label;
-  color: var(--muted);
-  padding-top: 0.4rem;
+  @include m.section-title;
+}
+
+.sk__body {
+  width: 100%;
+  display: grid;
+  justify-items: center;
 }
 
 .sk__lead {
   color: var(--muted);
-  max-width: var(--measure);
+  font-size: var(--text-lead);
+  letter-spacing: 0.011em;
+  line-height: 1.38;
+  text-align: center;
+  max-width: 46ch;
 }
 
 .sk__groups {
+  width: 100%;
   margin-top: var(--sp-12);
   display: grid;
-  gap: var(--sp-8);
+  gap: var(--sp-4);
+
+  @include m.bp(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.bp(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .sk__group {
   display: grid;
+  align-content: start;
   gap: var(--sp-3);
-
-  // Rótulo do grupo à esquerda em telas largas, empilhado abaixo disso.
-  @include m.bp(md) {
-    grid-template-columns: 9rem 1fr;
-    gap: var(--sp-6);
-    align-items: baseline;
-  }
+  padding: var(--sp-6);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
 }
 
 .sk__label {
-  @include m.label;
-  color: var(--accent);
+  font-size: var(--text-body);
+  font-weight: 600;
 }
 
 .sk__items {
@@ -57,17 +65,17 @@
   // O gap horizontal maior é o que separa os itens visualmente — sem pílulas
   // nem bordas, que adicionariam ruído a uma seção que é essencialmente uma
   // lista de nomes.
-  gap: var(--sp-2) var(--sp-4);
+  gap: var(--sp-1) var(--sp-4);
 }
 
 .sk__item {
   font-size: var(--text-sm);
+  color: var(--muted);
   position: relative;
 
   // Separador tipográfico entre itens, em vez de borda ao redor de cada um.
   + .sk__item::before {
     content: '·';
-    color: var(--border);
     position: absolute;
     left: calc(var(--sp-4) / -2);
     transform: translateX(-50%);

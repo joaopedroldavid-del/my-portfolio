@@ -3,57 +3,75 @@
 .hero {
   @include m.container;
   // Compensa o header fixo e ainda dá o respiro alto da seção.
-  padding-block: calc(3.5rem + var(--sp-16)) var(--section-y);
+  padding-block: calc(var(--nav-h) + var(--sp-16)) var(--section-y);
+  text-align: center;
 
   @include m.bp(md) {
-    padding-block: calc(4rem + var(--sp-20)) var(--section-y);
+    padding-top: calc(var(--nav-h) + var(--sp-20));
+  }
+
+  @include m.bp(lg) {
+    text-align: start;
   }
 }
 
 .hero__grid {
   display: grid;
+  justify-items: center;
   gap: var(--sp-12);
-  align-items: center;
 
-  // Assimetria deliberada: o texto domina, o retrato acompanha.
   @include m.bp(lg) {
-    grid-template-columns: 1.45fr 1fr;
+    grid-template-columns: 1.3fr 1fr;
+    align-items: center;
     gap: var(--sp-16);
   }
 }
 
+.hero__text {
+  display: grid;
+  justify-items: center;
+
+  @include m.bp(lg) {
+    justify-items: start;
+  }
+}
+
 .hero__eyebrow {
-  @include m.label;
+  font-family: var(--font-display);
+  font-size: var(--text-lead);
+  font-weight: 600;
+  letter-spacing: 0.011em;
+  line-height: var(--leading-snug);
   color: var(--muted);
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: var(--sp-2);
   flex-wrap: wrap;
-}
 
-.hero__dot {
-  color: var(--border);
+  @include m.bp(lg) {
+    justify-content: start;
+  }
 }
 
 .hero__headline {
-  margin-top: var(--sp-6);
+  margin-top: var(--sp-3);
   font-family: var(--font-display);
   font-size: var(--text-display);
-  font-weight: 400;
+  font-weight: 600;
   line-height: var(--leading-tight);
-  // O tracking negativo em serifada grande é o detalhe que segura o visual.
   letter-spacing: var(--tracking-display);
   // Respeita o \n definido no dicionário.
   white-space: pre-line;
-  // Serifada de alto contraste pede um leve balanço óptico à esquerda.
-  margin-left: -0.03em;
 }
 
 .hero__lead {
-  margin-top: var(--sp-6);
-  max-width: 46ch;
+  margin-top: var(--sp-4);
+  max-width: 40ch;
+  font-family: var(--font-display);
   font-size: var(--text-lead);
-  line-height: 1.5;
+  line-height: 1.38;
+  letter-spacing: 0.011em;
   color: var(--muted);
 }
 
@@ -61,66 +79,30 @@
   margin-top: var(--sp-8);
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-3) var(--sp-6);
+  justify-content: center;
   align-items: center;
+  gap: var(--sp-4) var(--sp-8);
+
+  @include m.bp(lg) {
+    justify-content: start;
+  }
 }
 
 .hero__portrait {
-  // No mobile o retrato vem depois do texto e não domina a dobra.
-  order: 2;
+  width: 100%;
   max-width: 20rem;
 
   @include m.bp(lg) {
-    max-width: none;
     justify-self: end;
   }
 
   img {
     width: 100%;
     height: auto;
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     // Proporção de retrato garantida mesmo se o arquivo trocar de dimensão.
     aspect-ratio: 3 / 4;
     object-fit: cover;
-  }
-}
-
-// ── Botões ───────────────────────────────────────────────────────────────────
-// Ficam aqui porque o Hero é o único lugar com par de CTAs; o Contato usa
-// links de texto.
-
-.btn {
-  @include m.label;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    background-color var(--dur-fast) var(--ease),
-    color var(--dur-fast) var(--ease),
-    border-color var(--dur-fast) var(--ease);
-}
-
-.btn--solid {
-  padding: var(--sp-3) var(--sp-6);
-  border-radius: var(--radius-pill);
-  background: var(--accent);
-  // NÃO usar branco fixo: no tema escuro o texto sobre o accent precisa ser
-  // escuro para passar contraste AA. O token resolve isso por tema.
-  color: var(--accent-on);
-
-  &:hover {
-    background: color-mix(in srgb, var(--accent) 86%, var(--ink));
-  }
-}
-
-.btn--quiet {
-  color: var(--ink);
-  border-bottom: 1px solid var(--border);
-  padding-bottom: var(--sp-1);
-
-  &:hover {
-    border-bottom-color: var(--accent);
-    color: var(--accent);
   }
 }
 

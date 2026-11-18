@@ -38,10 +38,9 @@ fallback de SPA.
 
 ### Sobre o `vercel.json`
 
-Ele contém **apenas** cabeçalhos de cache, em três faixas:
+Ele contém **apenas** cabeçalhos de cache, em duas faixas:
 
 - `*.js` / `*.css` — a saída do build tem hash no nome, então cache eterno é seguro
-- `/fonts/*` — nome fixo; cache de 30 dias permite substituir uma fonte
 - `/img`, `/cv`, `/og` — serão trocados durante a configuração; cache de 1 dia
 
 ### Por que NÃO há redirect de `/` para `/pt`
