@@ -11,6 +11,7 @@
 
 .choose__name {
   font-family: var(--font-display);
+  font-weight: 600;
   font-size: var(--text-h2);
   letter-spacing: var(--tracking-h2);
   line-height: var(--leading-tight);
@@ -22,13 +23,10 @@
   justify-content: center;
 
   a {
-    @include m.label;
-    color: var(--accent);
-    border-bottom: 1px solid transparent;
-    transition: border-color var(--dur-fast) var(--ease);
+    color: var(--link);
 
     &:hover {
-      border-color: currentColor;
+      text-decoration: underline;
     }
   }
 }
