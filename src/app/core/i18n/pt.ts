@@ -82,7 +82,7 @@ export const PT = {
     heading: 'Projetos',
     // TODO(joão): rascunho meu — ajusta pra sua voz.
     instructions: 'Escolha uma cidade e uma data para consultar a estimativa.',
-    testButton: 'Testar',
+    testButton: 'Clique para testar',
     visitSite: 'Visitar site',
     modal: {
       cityLabel: 'Cidade',
@@ -125,7 +125,6 @@ export const PT = {
 
   footer: {
     builtWith: 'Feito em Angular',
-    viewSource: 'Ver o código',
   },
 
   notFound: {
