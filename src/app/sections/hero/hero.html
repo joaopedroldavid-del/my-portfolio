@@ -3,7 +3,7 @@
     <div class="hero__text">
       <p class="hero__eyebrow">
         <span>{{ t().hero.role }}</span>
-        <span class="hero__dot" aria-hidden="true">·</span>
+        <span aria-hidden="true">·</span>
         <span>{{ t().hero.location }}</span>
       </p>
 
@@ -14,10 +14,10 @@
       <p class="hero__lead">{{ t().hero.lead }}</p>
 
       <div class="hero__actions">
-        <a class="btn btn--solid" [routerLink]="'/' + locale()" fragment="experience">
+        <a class="btn btn--secondary" [routerLink]="'/' + locale()" fragment="experience">
           {{ t().hero.ctaExperience }}
         </a>
-        <a class="btn btn--quiet" [href]="resumeHref()" download>
+        <a class="btn btn--secondary arrow-download" [href]="resumeHref()" download>
           {{ t().hero.ctaResume }}
         </a>
       </div>
