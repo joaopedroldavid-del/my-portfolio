@@ -17,10 +17,11 @@ Trajetória deve depender de onde ele trabalha no momento.
 
 A seção **Projetos** reúne projetos dele com algo público para mostrar —
 repositório, demo ou site em produção. Hoje: o e-commerce da Ita Calçados
-(link para o site) e o `ai-weather-forecasting` (demo no modal). Um cartão só
-mostra o botão "Testar" quando o projeto tem demo (`cities`) e o link
-"Visitar site" quando tem `siteUrl`. A seção não tem frase de introdução, só
-o título.
+(link para o site) e o `ai-weather-forecasting` (demo no modal). O cartão
+inteiro é o elemento clicável (`.pj__overlay`, um único `<button>` ou `<a>`
+cobrindo o cartão): com demo (`cities`) abre o modal ("Clique para testar");
+sem demo e com `siteUrl` abre o site ("Visitar site"). Se houver os dois, vence
+a demo. A seção não tem frase de introdução, só o título.
 
 Site de página única com 5 seções, prerenderizado em build time. **Em produção
 na Vercel** em `https://www.joaopedroldavid.dev` (o domínio sem `www` responde
@@ -82,14 +83,13 @@ src/
       not-found/
   styles/
     _tokens.scss           → paleta dos dois temas, tipografia, espaçamento, movimento
-    _typography.scss       → @font-face das 3 famílias
     _mixins.scss           → bp(), container, label, focus-ring, motion-safe
     _reset.scss
   styles.scss              → folha global; importa os parciais na ordem correta
   index.html               → script síncrono anti-flash de tema + classe .js
 
 public/
-  fonts/  img/  cv/  og/
+  img/  cv/  og/
 ```
 
 O `includePaths` do `angular.json` aponta para `src/styles`, então dentro de
@@ -137,9 +137,32 @@ componentes basta `@use 'mixins' as m;` — sem caminho relativo.
 
 ### Cor de texto sobre o accent
 
-Use **`var(--accent-on)`**, nunca `white`. Branco sobre o accent dá 6,36:1 no
-tema claro (passa AA) mas apenas **3,07:1** no escuro (falha). No escuro o texto
-sobre o accent precisa ser quase-preto. O token resolve isso por tema.
+Use **`var(--accent-on)`**, nunca `white`. Hoje o accent é o mesmo azul nos
+dois temas e o token vale branco nos dois (4,7:1), mas o token existe para que
+uma troca de accent não exija caçar `white` pelo código.
+
+Azul como **texto** usa `var(--link)`, não `var(--accent)`: o azul de botão
+(`#0071e3`) dá só 4,47:1 sobre preto e 3,58:1 sobre a superfície escura.
+
+### Direção visual
+
+O visual segue o design system extraído do apple.com: `--bg` / `--surface`
+neutros, um azul, títulos em peso 600 com a fonte do sistema (nenhuma fonte é
+baixada), botões pill (`.btn.btn--primary`; `.btn--secondary` é a versão contornada
+que preenche no hover; `.arrow-external` / `.arrow-download` marcam nova aba e
+download) e links com chevron (`.link-more`),
+ambos globais em `styles.scss`. Cada seção é uma faixa full-bleed via
+`@include m.tile(...)` com título `@include m.section-title`; o Contato usa
+`.tile-dark`, que redefine a paleta escura só dentro da faixa.
+
+- **Não reintroduza fontes auto-hospedadas** sem decidir junto: a stack do
+  sistema é proposital (zero download, SF em aparelhos Apple).
+- Chips de tecnologia usam texto `--ink` sobre `--fill-quiet`; `--muted` sobre
+  `--fill-quiet` falha AA.
+- Cartões de Projetos: no hover/foco o overlay aplica `--veil` + blur e mostra
+  a ação; em telas sem hover (`@media (hover: none)`) o rótulo fica sempre
+  visível, em `--link`, no rodapé do cartão. Não coloque outro elemento
+  clicável dentro do cartão — o overlay cobre tudo.
 
 ## ⚠️ NÃO FAÇA
 
