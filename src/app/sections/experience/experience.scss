@@ -1,29 +1,22 @@
 @use 'mixins' as m;
 
 .xp {
-  @include m.container;
-  padding-block: var(--section-y);
-  border-top: 1px solid var(--border);
+  @include m.tile;
 }
 
 .xp__grid {
+  @include m.container;
   display: grid;
-  gap: var(--sp-6);
-  align-items: start;
-
-  @include m.bp(lg) {
-    grid-template-columns: 12rem 1fr;
-    gap: var(--sp-16);
-  }
+  justify-items: center;
+  gap: var(--sp-12);
 }
 
 .xp__heading {
-  @include m.label;
-  color: var(--muted);
-  padding-top: 0.4rem;
+  @include m.section-title;
 }
 
 .xp__body {
+  width: 100%;
   max-width: 46rem;
 }
 
@@ -42,12 +35,15 @@
 .xp__company {
   font-family: var(--font-display);
   font-size: var(--text-h3);
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  letter-spacing: 0.007em;
 }
 
 .xp__org-range,
 .xp__range {
   @include m.label;
+  font-weight: 400;
   color: var(--muted);
 }
 
@@ -87,8 +83,7 @@
     border: 1px solid var(--muted);
   }
 
-  // O cargo atual recebe o accent — é a única cor da seção, e marca onde a
-  // progressão chegou.
+  // O cargo atual recebe o accent e marca onde a progressão chegou.
   &:first-child::before {
     background: var(--accent);
     border-color: var(--accent);
@@ -117,12 +112,7 @@
 
 .xp__now {
   @include m.label;
-  font-weight: 500;
-  color: var(--accent);
-  border: 1px solid var(--accent-weak);
-  background: var(--accent-weak);
-  padding: 0.15rem var(--sp-2);
-  border-radius: var(--radius-pill);
+  color: var(--link);
 }
 
 .xp__bullets {
@@ -132,8 +122,7 @@
 
   li {
     color: var(--muted);
-    font-size: var(--text-sm);
-    line-height: 1.55;
+    font-size: var(--text-body);
     padding-left: var(--sp-4);
     position: relative;
 
@@ -158,18 +147,21 @@
 
   li {
     @include m.label;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 0.2rem var(--sp-2);
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--fill-quiet);
+    border-radius: var(--radius-pill);
+    padding: var(--sp-1) var(--sp-3);
   }
 }
 
 // ── Outros trabalhos ─────────────────────────────────────────────────────────
 
 .xp__other {
-  @include m.label;
-  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 600;
+  line-height: var(--leading-snug);
   margin-top: var(--sp-20);
   padding-bottom: var(--sp-4);
   border-bottom: 1px solid var(--border);
