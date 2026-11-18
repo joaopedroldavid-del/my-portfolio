@@ -79,7 +79,7 @@ export const EN: Dict = {
     heading: 'Projects',
     // TODO(joão): my draft — adjust to your voice.
     instructions: 'Pick a city and a date to look up the estimate.',
-    testButton: 'Test',
+    testButton: 'Click to test',
     visitSite: 'Visit site',
     modal: {
       cityLabel: 'City',
@@ -122,7 +122,6 @@ export const EN: Dict = {
 
   footer: {
     builtWith: 'Built with Angular',
-    viewSource: 'View source',
   },
 
   notFound: {
